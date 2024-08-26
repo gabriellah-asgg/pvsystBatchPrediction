@@ -41,7 +41,7 @@ nn_params = {'random_state':rand, 'activation':'relu', 'alpha':10, 'hidden_layer
                   'learning_rate':'constant', 'learning_rate_init':0.1, 'solver':'adam'}
 nn_params_cv = {'solver': ('sgd', 'adam'), 'alpha': [.0001, .001, .01, 1],
             'learning_rate': ('constant', 'adaptive'),
-            'learning_rate_init': [.001, .01, .1], 'activation': 'relu',
+            'learning_rate_init': [.001, .01, .1],
             'hidden_layer_sizes': [[18,24,18], [20, 50, 20]]}
 
 
@@ -231,7 +231,7 @@ for model in model_params.keys():
     skip_model = check_models_to_run(curr_model, curr_param, pv_type)
     if not skip_model:
         if 'tuned' in model:
-            train_model, rmse_score, si_score = tune_models(curr_model, curr_param, X_train,y_train, X_test, y_test)
+            train_model, rmse_score, si_score = tune_models(curr_model, curr_param, X_train,y_train, X_test, y_test, verbose=5)
             export_model(train_model, pv_type, True)
             add_model_params(pv_type, curr_param, model, rmse_score, si_score )
         else:

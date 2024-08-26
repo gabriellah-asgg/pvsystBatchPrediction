@@ -24,6 +24,8 @@ def check_models_to_run(model, model_params, pv_type):
     for param_var in pv_model_runs["PV Panel Type"][pv_type]["Models"][model_name]["param_variations"]:
         param_to_check = param_var.get("params")
         model_found = params_equal(model_params, param_to_check)
+        if model_found:
+            break
 
     with open(r"..\res\cache.json", 'w') as f:
         json.dump(pv_model_runs, f, indent=4)
@@ -35,6 +37,9 @@ def params_equal(input_params, params):
     if len(input_params) != len(params):
         return match
     for key in input_params:
+        # the input params may have tuples that need to be converted to lists
+        if isinstance(input_params[key], tuple):
+            input_params[key] = list(input_params[key])
         if isinstance(input_params[key], list):
             input_params[key] = sorted(input_params[key])
 
