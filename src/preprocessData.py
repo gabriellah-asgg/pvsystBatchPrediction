@@ -14,6 +14,7 @@ def process_model_data(df_to_process):
             cols_to_drop.append(col)
 
     model_df.drop(columns=cols_to_drop, inplace=True)
+    model_df.dropna(axis=0,inplace=True)
     return model_df
 
 
