@@ -5,18 +5,13 @@
             "Best Model Score": 0.328432500746131,
             "Best Model SI": 0.034963245703693,
             "Models": {
-                "nn": {
+                "MLPRegressor": {
                     "param_variations": [
-                        {
-                            "params": {},
-                            "RMSE": 4.51578605639373,
-                            "SI": 0.478877088104094
-                        },
                         {
                             "params": {
                                 "solver": [
-                                    "sgd",
-                                    "adam"
+                                    "adam",
+                                    "sgd"
                                 ],
                                 "alpha": [
                                     0.0001,
@@ -28,8 +23,8 @@
                                     20
                                 ],
                                 "learning_rate": [
-                                    "constant",
-                                    "adaptive"
+                                    "adaptive",
+                                    "constant"
                                 ],
                                 "learning_rate_init": [
                                     0.001,
@@ -43,6 +38,14 @@
                                 "hidden_layer_sizes": [
                                     [
                                         10,
+                                        15,
+                                        20,
+                                        20,
+                                        15,
+                                        10
+                                    ],
+                                    [
+                                        10,
                                         20,
                                         20,
                                         10
@@ -51,19 +54,28 @@
                                         20,
                                         50,
                                         20
-                                    ],
-                                    [
-                                        10,
-                                        15,
-                                        20,
-                                        20,
-                                        15,
-                                        10
                                     ]
                                 ]
                             },
                             "RMSE": 0.42413030629836374,
                             "SI": 0.04514945552110647
+                        },
+                        {
+                            "params": {
+                                "random_state": 42,
+                                "activation": "relu",
+                                "alpha": 10,
+                                "hidden_layer_sizes": [
+                                    18,
+                                    24,
+                                    18
+                                ],
+                                "learning_rate": "constant",
+                                "learning_rate_init": 0.1,
+                                "solver": "adam"
+                            },
+                            "RMSE": 4.515786056393733,
+                            "SI": 0.4788770881040949
                         }
                     ]
                 },
@@ -78,8 +90,8 @@
                             "params": {
                                 "solver": [
                                     "auto",
-                                    "svd",
-                                    "lsqr"
+                                    "lsqr",
+                                    "svd"
                                 ],
                                 "alpha": [
                                     1,
@@ -106,9 +118,9 @@
                             "params": {
                                 "kernel": [
                                     "linear",
+                                    "poly",
                                     "rbf",
-                                    "sigmoid",
-                                    "poly"
+                                    "sigmoid"
                                 ],
                                 "C": [
                                     1,

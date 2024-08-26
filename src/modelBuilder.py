@@ -13,22 +13,38 @@ from sklearn import linear_model
 from sklearn.neural_network import MLPRegressor
 from sklearn.multioutput import MultiOutputRegressor
 import pickle
+import os
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.tree import DecisionTreeRegressor
+from jsonWriter import check_models_to_run, add_model_params
 import warnings
 
-# standard random state
-rand = 42
 
-# export model
-def export_model(model, filename):
+def construct_df(filepath):
+    # construct dataframe for model building
+    preprocessor = Preprocessor(filepath)
+    df = preprocessor.read_worksheet(skip_rows=11)
+
+    model_df = preprocess.process_model_data(df)
+    print(model_df.info)
+    return model_df
+
+
+def export_model(model, pv_type, tuned, score=""):
     """
     Exports model using pickle
     :param model: model to be exported
     :param filename: string of filename to export model to
     :return: none
     """
-    pickle.dump(model, open(filename, 'wb'))
+    filename = str(model.__class__.__name__)
+    if tuned:
+        filename += "_tuned"
+    directory = '../res/' + pv_type
+    filepath = directory + '/' + filename + score +  '.pkl'
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    pickle.dump(model, open(filepath, 'wb'))
 
 
 def calc_scatter_index(rmse, y_preds, model):
@@ -49,7 +65,7 @@ def calc_scatter_index(rmse, y_preds, model):
     return si
 
 
-def build_models(model, xtrain, ytrain, xtest, ytest):
+def build_models(model, xtrain, ytrain, xtest, ytest, model_names, rmse_list, si_list):
     """
     Trains and tests given model using given test and training sets; Calculates RMSE.
     :param model: model to train
@@ -74,10 +90,13 @@ def build_models(model, xtrain, ytrain, xtest, ytest):
     rmse_list.append(rmse)
     si_list.append(si)
 
-    return model, rmse, si
+    # add model with params to params dict
+
+    return model, rmse, si, model_names, rmse_list, si_list
 
 
-def tune_models(model, param_grid, xtrain, ytrain, xtest, ytest, cv=15, verbose=0, scoring='neg_root_mean_squared_error'):
+def tune_models(model, param_grid, xtrain, ytrain, xtest, ytest, model_names, rmse_list, si_list, cv=15, verbose=0,
+                scoring='neg_root_mean_squared_error'):
     """
        Trains, tunes, and tests given model using given test and training sets; Calculates RMSE.
        :param param_grid: dictionary of parameters to test with grid search
@@ -109,104 +128,11 @@ def tune_models(model, param_grid, xtrain, ytrain, xtest, ytest, cv=15, verbose=
     rmse_list.append(rmse_tuned)
     si_list.append(si_tuned)
 
-    return hypertuned_model, rmse_tuned, si_tuned
+    return hypertuned_model, rmse_tuned, si_tuned, model_names, rmse_list, si_list
 
-def export_to_csv():
-    results_path = '../res/model_results.csv'
+
+def export_to_csv(pv_type, model_names, rmse_list, si_list):
+    results_path = '../res/' + pv_type + '/' + 'model_results.csv'
     results_data = {'Model Name': model_names, 'Model RMSE': rmse_list, 'Model Scatter Index': si_list}
     results_df = pd.DataFrame(results_data)
     results_df.to_csv(results_path, index=False)
-
-
-# construct dataframe for model building
-filepath = (r'Q:\Projects\224008\DESIGN\ANALYSIS\00_PV\PVsyst Batch Simulation\PV Batch '
-            r'Simulation_0815\Canopy_Section_A_BatchResults_all_Panels.xlsx')
-preprocessor = Preprocessor(filepath)
-df = preprocessor.read_worksheet(skip_rows=11)
-
-model_df = preprocess.process_model_data(df)
-print(model_df.info)
-
-# standardize data
-scaler = StandardScaler()
-y = model_df['EArray (KWh)']
-X = model_df.drop(['EArray (KWh)'], axis=1)
-X_scaled = scaler.fit_transform(X)
-export_model(scaler, '../res/Canopy_Section_A_BatchResults_all_Panels/scaler.pkl')
-
-# split for train and test
-X_train, X_test, y_train, y_test = train_test_split(
-    X_scaled, y, test_size=0.30, random_state=rand)
-
-# create data structures to capture model results
-model_names = []
-rmse_list = []
-si_list = []
-
-
-# build models
-# make svm model
-"""
-svr_model, svr_rmse, svr_si = build_models(SVR(), X_train, y_train, X_test, y_test)
-
-# export
-export_model(svr_model, '../res/svr.pkl')
-
-# linear regression model
-ridge_model, ridge_rmse, ridge_si = build_models(Ridge(), X_train, y_train, X_test, y_test)
-
-# export
-export_model(ridge_model, '../res/ridge.pkl')
-
-
-# Lasso model
-lasso_model, lasso_rmse, lasso_si = build_models(linear_model.Lasso(), X_train, y_train, X_test, y_test)
-
-# export
-export_model(lasso_model, '../res/lasso.pkl')
-
-# neural network
-nn = MLPRegressor(random_state=rand, activation='relu', alpha=10, hidden_layer_sizes=[18, 24, 18],
-                  learning_rate='constant', learning_rate_init=0.1, solver='adam')
-nn, nn_rmse, nn_si = build_models(nn, X_train, y_train, X_test, y_test)
-
-# export
-export_model(nn, '../res/nn.pkl')
-
-
-export_to_csv()
-
-# hyper parameter tuning
-svr_param_grid = {'kernel': ('linear', 'rbf', 'sigmoid', 'poly'),
-                  'C': [1, 10]}
-tuned_svr, tuned_svr_rmse, tuned_svr_si = tune_models(SVR(), svr_param_grid, X_train, y_train, X_test, y_test, verbose=4)
-
-# export
-export_model(tuned_svr, '../res/tuned_svr.pkl')
-
-# hyper tuned ridge regression
-param_ridge = {'solver': ('auto', 'svd', 'lsqr'),
-               'alpha': [1, 1.5, 5, 10, 20, 50]}
-tuned_ridge, tuned_ridge_rmse, tuned_rdige_si = tune_models(Ridge(), param_ridge, X_train, y_train, X_test, y_test, verbose=4)
-
-# export
-export_model(tuned_ridge, '../res/tuned_ridge.pkl')
-
-# hyper tuned lasso regression
-param_lasso = {'alpha': [0.01, 0.1, 0.5, 1, 1.5, 5, 10, 20, 50]}
-tuned_lasso_model, tuned_lasso_rmse, tuned_lasso_si = tune_models(linear_model.Lasso(), param_lasso, X_train, y_train, X_test, y_test, verbose=4)
-
-# export
-export_model(tuned_lasso_model, '../res/tuned_lasso.pkl')
-
-export_to_csv()
-"""
-# hyper tuned nn
-param_nn = {'solver': ('sgd', 'adam'), 'alpha': [.0001, .001, .01, 1, 5, 10, 20],
-            'learning_rate': ('constant', 'adaptive'),
-            'learning_rate_init': [.001, .01, .1], 'activation': ('logistic', 'relu'),
-            'hidden_layer_sizes': [[10, 20, 20, 10], [20, 50, 20], [10, 15, 20, 20, 15, 10]]}
-
-# this section commented out because it takes long to run and model has already been exported
-tuned_nn_model, tuned_nn_rmse, tuned_nn_si = tune_models(MLPRegressor(random_state=rand), param_nn, X_train, y_train, X_test, y_test, verbose=4)
-export_model(tuned_nn_model, '../res/Canopy_Section_A_BatchResults_all_Panels/tuned_nn.pkl')
