@@ -1,7 +1,7 @@
 import pickle
 import pandas as pd
 # load current best model
-best_model = pickle.load(open(r'../res/Canopy_Section_A_BatchResults_all_Panels/tuned_svr.pkl', 'rb'))
+best_model = pickle.load(open(r'../res/Canopy_Section_A_BatchResults_all_Panels/SVR_tuned.pkl', 'rb'))
 
 scaler = pickle.load(open(r'../res/Canopy_Section_A_BatchResults_all_Panels/scaler.pkl', 'rb'))
 
