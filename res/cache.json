@@ -1,12 +1,161 @@
 {
     "PV Panel Type": {
         "Canopy_Section_A_BatchResults_all_Panels": {
-            "Best Model": "SVR",
-            "Best Model Score": 0.328432500746131,
-            "Best Model SI": 0.034963245703693,
+            "Best Model": "SVR_tuned",
+            "Best Model Score": 0.3281046288639908,
+            "Best Model SI": 0.034928290169752865,
             "Models": {
-                "MLPRegressor": {
+                "SVR": {
+                    "best_tuned_params": {
+                        "C": 10,
+                        "epsilon": 0.01,
+                        "kernel": "rbf"
+                    },
+                    "best_tuned_rmse": 0.3281046288639908,
+                    "best_tuned_si": 0.034928290169752865,
                     "param_variations": [
+                        {
+                            "params": {},
+                            "RMSE": 0.421002508256606,
+                            "SI": 0.04481819312599672
+                        },
+                        {
+                            "params": {
+                                "kernel": [
+                                    "linear",
+                                    "poly",
+                                    "rbf",
+                                    "sigmoid"
+                                ],
+                                "C": [
+                                    1,
+                                    10
+                                ],
+                                "epsilon": [
+                                    0.0001,
+                                    0.001,
+                                    0.01,
+                                    0.1
+                                ]
+                            },
+                            "RMSE": 0.3281046288639908,
+                            "SI": 0.034928290169752865
+                        },
+                        {
+                            "params": {},
+                            "RMSE": 0.421002508256606,
+                            "SI": 0.04481819312599672
+                        },
+                        {
+                            "params": {},
+                            "RMSE": 0.421002508256606,
+                            "SI": 0.04481819312599672
+                        }
+                    ]
+                },
+                "Ridge": {
+                    "best_tuned_rmse": 29.815290379629083,
+                    "best_tuned_si": 3.1738912409126083,
+                    "best_tuned_params": {
+                        "alpha": 20,
+                        "solver": "auto"
+                    },
+                    "param_variations": [
+                        {
+                            "params": {},
+                            "RMSE": 29.81526250443109,
+                            "SI": 3.1738885560908945
+                        },
+                        {
+                            "params": {
+                                "solver": [
+                                    "auto",
+                                    "lsqr",
+                                    "svd"
+                                ],
+                                "alpha": [
+                                    1,
+                                    1.5,
+                                    5,
+                                    10,
+                                    20,
+                                    50
+                                ]
+                            },
+                            "RMSE": 29.815290379629083,
+                            "SI": 3.1738912409126083
+                        }
+                    ]
+                },
+                "Lasso": {
+                    "best_tuned_rmse": 29.81532401912302,
+                    "best_tuned_si": 3.1738945088061694,
+                    "best_tuned_params": {
+                        "alpha": 0.01
+                    },
+                    "param_variations": [
+                        {
+                            "params": {},
+                            "RMSE": 29.855278519526173,
+                            "SI": 3.178087215867584
+                        },
+                        {
+                            "params": {
+                                "alpha": [
+                                    0.01,
+                                    0.1,
+                                    0.5,
+                                    1,
+                                    1.5,
+                                    5,
+                                    10,
+                                    20,
+                                    50
+                                ]
+                            },
+                            "RMSE": 29.81532401912302,
+                            "SI": 3.1738945088061694
+                        }
+                    ]
+                },
+                "MLPRegressor": {
+                    "best_tuned_rmse": 0.42413030629836374,
+                    "best_tuned_si": 0.04514945552110647,
+                    "best_tuned_params": {
+                        "activation": "logistic",
+                        "alpha": 0.01,
+                        "hidden_layer_sizes": [
+                            20,
+                            50,
+                            20
+                        ],
+                        "learning_rate": "constant",
+                        "learning_rate_init": 0.01,
+                        "solver": "adam"
+                    },
+                    "param_variations": [
+                        {
+                            "params": {
+                                "random_state": 42,
+                                "activation": "relu",
+                                "alpha": 10,
+                                "hidden_layer_sizes": [
+                                    18,
+                                    18,
+                                    24
+                                ],
+                                "learning_rate": "constant",
+                                "learning_rate_init": 0.1,
+                                "solver": "adam"
+                            },
+                            "RMSE": 4.515786056393733,
+                            "SI": 0.4788770881040949
+                        },
+                        {
+                            "params": {},
+                            "RMSE": 1.8683814919991122,
+                            "SI": 0.19887515040125248
+                        },
                         {
                             "params": {
                                 "solver": [
@@ -59,102 +208,6 @@
                             },
                             "RMSE": 0.42413030629836374,
                             "SI": 0.04514945552110647
-                        },
-                        {
-                            "params": {
-                                "random_state": 42,
-                                "activation": "relu",
-                                "alpha": 10,
-                                "hidden_layer_sizes": [
-                                    18,
-                                    24,
-                                    18
-                                ],
-                                "learning_rate": "constant",
-                                "learning_rate_init": 0.1,
-                                "solver": "adam"
-                            },
-                            "RMSE": 4.515786056393733,
-                            "SI": 0.4788770881040949
-                        }
-                    ]
-                },
-                "Ridge": {
-                    "param_variations": [
-                        {
-                            "params": {},
-                            "RMSE": 29.815262504431,
-                            "SI": 3.17388855609089
-                        },
-                        {
-                            "params": {
-                                "solver": [
-                                    "auto",
-                                    "lsqr",
-                                    "svd"
-                                ],
-                                "alpha": [
-                                    1,
-                                    1.5,
-                                    5,
-                                    10,
-                                    20,
-                                    50
-                                ]
-                            },
-                            "RMSE": 29.815290379629,
-                            "SI": 3.1738912409126
-                        }
-                    ]
-                },
-                "SVR": {
-                    "param_variations": [
-                        {
-                            "params": {},
-                            "RMSE": 0.421002508256606,
-                            "SI": 0.0448181931259967
-                        },
-                        {
-                            "params": {
-                                "kernel": [
-                                    "linear",
-                                    "poly",
-                                    "rbf",
-                                    "sigmoid"
-                                ],
-                                "C": [
-                                    1,
-                                    10
-                                ]
-                            },
-                            "RMSE": 0.328432500746131,
-                            "SI": 0.034963245703693
-                        }
-                    ]
-                },
-                "Lasso": {
-                    "param_variations": [
-                        {
-                            "params": {},
-                            "RMSE": 29.8552785195261,
-                            "SI": 3.17808721586758
-                        },
-                        {
-                            "params": {
-                                "alpha": [
-                                    0.01,
-                                    0.1,
-                                    0.5,
-                                    1,
-                                    1.5,
-                                    5,
-                                    10,
-                                    20,
-                                    50
-                                ]
-                            },
-                            "RMSE": 29.815324019123,
-                            "SI": 3.17389450880616
                         }
                     ]
                 }
@@ -166,6 +219,12 @@
             "Best Model SI": 0.009000408548610365,
             "Models": {
                 "SVR": {
+                    "best_tuned_params": {
+                        "C": 10,
+                        "kernel": "rbf"
+                    },
+                    "best_tuned_rmse": 0.05410648682108229,
+                    "best_tuned_si": 0.009000408548610365,
                     "param_variations": [
                         {
                             "params": {},
@@ -179,69 +238,6 @@
                                     "poly",
                                     "rbf",
                                     "sigmoid"
-                                ],
-                                "C": [
-                                    1,
-                                    10
-                                ]
-                            },
-                            "RMSE": 0.05410648682108229,
-                            "SI": 0.009000408548610365
-                        },
-                        {
-                            "params": {},
-                            "RMSE": 0.11335748755184447,
-                            "SI": 0.01885670168501402
-                        },
-                        {
-                            "params": {
-                                "kernel": [
-                                    "linear",
-                                    "poly",
-                                    "rbf",
-                                    "sigmoid"
-                                ],
-                                "C": [
-                                    1,
-                                    10
-                                ]
-                            },
-                            "RMSE": 0.05410648682108229,
-                            "SI": 0.009000408548610365
-                        },
-                        {
-                            "params": {},
-                            "RMSE": 0.11335748755184447,
-                            "SI": 0.01885670168501402
-                        },
-                        {
-                            "params": {
-                                "kernel": [
-                                    "linear",
-                                    "poly",
-                                    "rbf",
-                                    "sigmoid"
-                                ],
-                                "C": [
-                                    1,
-                                    10
-                                ]
-                            },
-                            "RMSE": 0.05410648682108229,
-                            "SI": 0.009000408548610365
-                        },
-                        {
-                            "params": {},
-                            "RMSE": 0.11335748755184447,
-                            "SI": 0.01885670168501402
-                        },
-                        {
-                            "params": {
-                                "kernel": [
-                                    "linear",
-                                    "rbf",
-                                    "sigmoid",
-                                    "poly"
                                 ],
                                 "C": [
                                     1,
@@ -254,6 +250,12 @@
                     ]
                 },
                 "Ridge": {
+                    "best_tuned_params": {
+                        "alpha": 1,
+                        "solver": "lsqr"
+                    },
+                    "best_tuned_rmse": 0.28097024643442137,
+                    "best_tuned_si": 0.04673875178319567,
                     "param_variations": [
                         {
                             "params": {},
@@ -266,78 +268,6 @@
                                     "auto",
                                     "lsqr",
                                     "svd"
-                                ],
-                                "alpha": [
-                                    1,
-                                    1.5,
-                                    5,
-                                    10,
-                                    20,
-                                    50
-                                ]
-                            },
-                            "RMSE": 0.28097024643442137,
-                            "SI": 0.04673875178319567
-                        },
-                        {
-                            "params": {},
-                            "RMSE": 0.28097024643442126,
-                            "SI": 0.04673875178319565
-                        },
-                        {
-                            "params": {
-                                "solver": [
-                                    "auto",
-                                    "lsqr",
-                                    "svd"
-                                ],
-                                "alpha": [
-                                    1,
-                                    1.5,
-                                    5,
-                                    10,
-                                    20,
-                                    50
-                                ]
-                            },
-                            "RMSE": 0.28097024643442137,
-                            "SI": 0.04673875178319567
-                        },
-                        {
-                            "params": {},
-                            "RMSE": 0.28097024643442126,
-                            "SI": 0.04673875178319565
-                        },
-                        {
-                            "params": {
-                                "solver": [
-                                    "auto",
-                                    "lsqr",
-                                    "svd"
-                                ],
-                                "alpha": [
-                                    1,
-                                    1.5,
-                                    5,
-                                    10,
-                                    20,
-                                    50
-                                ]
-                            },
-                            "RMSE": 0.28097024643442137,
-                            "SI": 0.04673875178319567
-                        },
-                        {
-                            "params": {},
-                            "RMSE": 0.28097024643442126,
-                            "SI": 0.04673875178319565
-                        },
-                        {
-                            "params": {
-                                "solver": [
-                                    "auto",
-                                    "svd",
-                                    "lsqr"
                                 ],
                                 "alpha": [
                                     1,
@@ -354,73 +284,12 @@
                     ]
                 },
                 "Lasso": {
+                    "best_tuned_params": {
+                        "alpha": 0.01
+                    },
+                    "best_tuned_rmse": 0.2823101153682686,
+                    "best_tuned_si": 0.04696159036722771,
                     "param_variations": [
-                        {
-                            "params": {},
-                            "RMSE": 1.1261954045612068,
-                            "SI": 0.1873230894701487
-                        },
-                        {
-                            "params": {
-                                "alpha": [
-                                    0.01,
-                                    0.1,
-                                    0.5,
-                                    1,
-                                    1.5,
-                                    5,
-                                    10,
-                                    20,
-                                    50
-                                ]
-                            },
-                            "RMSE": 0.2823101153682686,
-                            "SI": 0.04696159036722771
-                        },
-                        {
-                            "params": {},
-                            "RMSE": 1.1261954045612068,
-                            "SI": 0.1873230894701487
-                        },
-                        {
-                            "params": {
-                                "alpha": [
-                                    0.01,
-                                    0.1,
-                                    0.5,
-                                    1,
-                                    1.5,
-                                    5,
-                                    10,
-                                    20,
-                                    50
-                                ]
-                            },
-                            "RMSE": 0.2823101153682686,
-                            "SI": 0.04696159036722771
-                        },
-                        {
-                            "params": {},
-                            "RMSE": 1.1261954045612068,
-                            "SI": 0.1873230894701487
-                        },
-                        {
-                            "params": {
-                                "alpha": [
-                                    0.01,
-                                    0.1,
-                                    0.5,
-                                    1,
-                                    1.5,
-                                    5,
-                                    10,
-                                    20,
-                                    50
-                                ]
-                            },
-                            "RMSE": 0.2823101153682686,
-                            "SI": 0.04696159036722771
-                        },
                         {
                             "params": {},
                             "RMSE": 1.1261954045612068,
@@ -446,6 +315,19 @@
                     ]
                 },
                 "MLPRegressor": {
+                    "best_tuned_params": {
+                        "alpha": 0.01,
+                        "hidden_layer_sizes": [
+                            18,
+                            24,
+                            18
+                        ],
+                        "learning_rate": "adaptive",
+                        "learning_rate_init": 0.1,
+                        "solver": "adam"
+                    },
+                    "best_tuned_rmse": 0.3233455838161132,
+                    "best_tuned_si": 0.05377986099741812,
                     "param_variations": [
                         {
                             "params": {
@@ -465,10 +347,162 @@
                             "SI": 0.035708400016752996
                         },
                         {
+                            "params": {
+                                "solver": [
+                                    "adam",
+                                    "sgd"
+                                ],
+                                "alpha": [
+                                    0.0001,
+                                    0.001,
+                                    0.01,
+                                    1
+                                ],
+                                "learning_rate": [
+                                    "adaptive",
+                                    "constant"
+                                ],
+                                "learning_rate_init": [
+                                    0.001,
+                                    0.01,
+                                    0.1
+                                ],
+                                "hidden_layer_sizes": [
+                                    [
+                                        18,
+                                        24,
+                                        18
+                                    ],
+                                    [
+                                        20,
+                                        50,
+                                        20
+                                    ]
+                                ]
+                            },
+                            "RMSE": 0.3233455838161132,
+                            "SI": 0.05377986099741812
+                        }
+                    ]
+                }
+            }
+        },
+        "Semi Opaque Panels_Worst Case Scenario.CSV": {
+            "Best Model": "SVR_tuned",
+            "Best Model Score": 0.05200088112465047,
+            "Best Model SI": 0.016560683196085703,
+            "Models": {
+                "SVR": {
+                    "best_tuned_params": {
+                        "C": 10,
+                        "kernel": "rbf"
+                    },
+                    "best_tuned_rmse": 0.05200088112465047,
+                    "best_tuned_si": 0.016560683196085703,
+                    "param_variations": [
+                        {
                             "params": {},
-                            "RMSE": 334.15500249493334,
-                            "SI": 123.88694313352539
+                            "RMSE": 0.06275478851818439,
+                            "SI": 0.01998539759831718
                         },
+                        {
+                            "params": {
+                                "kernel": [
+                                    "linear",
+                                    "rbf",
+                                    "sigmoid",
+                                    "poly"
+                                ],
+                                "C": [
+                                    1,
+                                    10
+                                ]
+                            },
+                            "RMSE": 0.05200088112465047,
+                            "SI": 0.016560683196085703
+                        }
+                    ]
+                },
+                "Ridge": {
+                    "best_tuned_params": {
+                        "alpha": 1,
+                        "solver": "svd"
+                    },
+                    "best_tuned_rmse": 0.0691588694319625,
+                    "best_tuned_si": 0.022024764705728374,
+                    "param_variations": [
+                        {
+                            "params": {},
+                            "RMSE": 0.06915886943196524,
+                            "SI": 0.022024764705729245
+                        },
+                        {
+                            "params": {
+                                "solver": [
+                                    "auto",
+                                    "svd",
+                                    "lsqr"
+                                ],
+                                "alpha": [
+                                    1,
+                                    1.5,
+                                    5,
+                                    10,
+                                    20,
+                                    50
+                                ]
+                            },
+                            "RMSE": 0.0691588694319625,
+                            "SI": 0.022024764705728374
+                        }
+                    ]
+                },
+                "Lasso": {
+                    "best_tuned_params": {
+                        "alpha": 0.01
+                    },
+                    "best_tuned_rmse": 0.10252864412343647,
+                    "best_tuned_si": 0.03265259663653499,
+                    "param_variations": [
+                        {
+                            "params": {},
+                            "RMSE": 0.9879661719891175,
+                            "SI": 0.3146145727638527
+                        },
+                        {
+                            "params": {
+                                "alpha": [
+                                    0.01,
+                                    0.1,
+                                    0.5,
+                                    1,
+                                    1.5,
+                                    5,
+                                    10,
+                                    20,
+                                    50
+                                ]
+                            },
+                            "RMSE": 0.10252864412343647,
+                            "SI": 0.03265259663653499
+                        }
+                    ]
+                },
+                "MLPRegressor": {
+                    "best_tuned_params": {
+                        "alpha": 1,
+                        "hidden_layer_sizes": [
+                            20,
+                            50,
+                            20
+                        ],
+                        "learning_rate": "constant",
+                        "learning_rate_init": 0.1,
+                        "solver": "adam"
+                    },
+                    "best_tuned_rmse": 0.8347522683969457,
+                    "best_tuned_si": 0.2663542077129477,
+                    "param_variations": [
                         {
                             "params": {
                                 "random_state": 42,
@@ -476,15 +510,15 @@
                                 "alpha": 10,
                                 "hidden_layer_sizes": [
                                     18,
-                                    18,
-                                    24
+                                    24,
+                                    18
                                 ],
                                 "learning_rate": "constant",
                                 "learning_rate_init": 0.1,
                                 "solver": "adam"
                             },
-                            "RMSE": 0.2146208585714741,
-                            "SI": 0.035708400016752996
+                            "RMSE": 0.3273821913589232,
+                            "SI": 0.10421236448167621
                         },
                         {
                             "params": {
@@ -520,8 +554,8 @@
                                     ]
                                 ]
                             },
-                            "RMSE": 0.27535495223713446,
-                            "SI": 0.04579872881675259
+                            "RMSE": 0.8347522683969457,
+                            "SI": 0.2663542077129477
                         }
                     ]
                 }

@@ -4,12 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="fixed errors in json reading and writing">
-      <change afterPath="$PROJECT_DIR$/src/opaquePanels.py" afterDir="false" />
+    <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="renamed pkl files">
+      <change afterPath="$PROJECT_DIR$/src/buildWorstCaseSemiOpModel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/makeSemiOpaquePredictions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jsonWriter.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsonWriter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/makePredictions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/makeOpaquePredictions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modelBuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelBuilder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pvPanelSemiOpaque.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pvPanelSemiOpaque.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/opaquePanels.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/opaquePanels.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/preprocessData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/preprocessData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pvPanelSemiOpaque.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/buildBestCaseSemiOpModel.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,13 +55,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.buildModel.executor": "Run",
+    "Python.buildWorstCaseSemiOpModel.executor": "Debug",
     "Python.dataExploration.executor": "Run",
     "Python.jsonWriter.executor": "Debug",
+    "Python.makeOpaquePredictions.executor": "Debug",
     "Python.makePredictions.executor": "Run",
+    "Python.makeSemiOpaquePredictions.executor": "Run",
     "Python.modelBuilder.executor": "Run",
     "Python.opaquePanels.executor": "Debug",
     "Python.preprocessData.executor": "Debug",
-    "Python.pvPanelSemiOpaque.executor": "Run",
+    "Python.pvPanelSemiOpaque.executor": "Debug",
+    "Python.semiOpaquePredictions.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "C:/Users/gabriellahoover/ozingaAutomation/ozingaAutomation.py"
@@ -116,7 +125,23 @@
       <option name="project" value="LOCAL" />
       <updated>1724683953076</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="edited pkl naming convention">
+      <option name="closed" value="true" />
+      <created>1724687266446</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1724687266446</updated>
+    </task>
+    <task id="LOCAL-00006" summary="renamed pkl files">
+      <option name="closed" value="true" />
+      <created>1724687424013</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1724687424013</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -124,22 +149,31 @@
     <MESSAGE value="built models" />
     <MESSAGE value="added in semi opaque models and json file" />
     <MESSAGE value="fixed errors in json reading and writing" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed errors in json reading and writing" />
+    <MESSAGE value="edited pkl naming convention" />
+    <MESSAGE value="renamed pkl files" />
+    <option name="LAST_COMMIT_MESSAGE" value="renamed pkl files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/jsonWriter.py</url>
-          <line>24</line>
-          <option name="timeStamp" value="61" />
+          <url>file://$PROJECT_DIR$/src/makeOpaquePredictions.py</url>
+          <line>33</line>
+          <option name="timeStamp" value="70" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/jsonWriter.py</url>
-          <line>35</line>
-          <option name="timeStamp" value="62" />
+          <url>file://$PROJECT_DIR$/src/opaquePanels.py</url>
+          <line>92</line>
+          <option name="timeStamp" value="74" />
         </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
   </component>
 </project>

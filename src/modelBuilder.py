@@ -4,27 +4,20 @@ from preprocessData import Preprocessor
 import preprocessData as preprocess
 import numpy as np
 from sklearn.model_selection import GridSearchCV
-from sklearn.svm import SVR
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import root_mean_squared_error
-from sklearn.linear_model import Ridge
-from sklearn import linear_model
-from sklearn.neural_network import MLPRegressor
-from sklearn.multioutput import MultiOutputRegressor
 import pickle
 import os
-from sklearn.neighbors import KNeighborsRegressor
-from sklearn.tree import DecisionTreeRegressor
-from jsonWriter import check_models_to_run, add_model_params
 import warnings
 
 
-def construct_df(filepath):
+def construct_df(filepath, columns=None):
     # construct dataframe for model building
     preprocessor = Preprocessor(filepath)
-    df = preprocessor.read_worksheet(skip_rows=11)
+    if ".xlsx" in filepath:
+        df = preprocessor.read_worksheet(skip_rows=11, columns=columns)
 
+    else:
+        df = preprocessor.read_csv(skip_rows=11, columns=columns)
     model_df = preprocess.process_model_data(df)
     print(model_df.info)
     return model_df
@@ -41,7 +34,7 @@ def export_model(model, pv_type, tuned, score=""):
     if tuned:
         filename += "_tuned"
     directory = '../res/' + pv_type
-    filepath = directory + '/' + filename + score +  '.pkl'
+    filepath = directory + '/' + filename + '.pkl'
     if not os.path.exists(directory):
         os.makedirs(directory)
     pickle.dump(model, open(filepath, 'wb'))
@@ -128,11 +121,6 @@ def tune_models(model, param_grid, xtrain, ytrain, xtest, ytest, model_names, rm
     rmse_list.append(rmse_tuned)
     si_list.append(si_tuned)
 
-    return hypertuned_model, rmse_tuned, si_tuned, model_names, rmse_list, si_list
+    return hypertuned_model, rmse_tuned, si_tuned, model_names, rmse_list, si_list, gridsearch.best_params_
 
 
-def export_to_csv(pv_type, model_names, rmse_list, si_list):
-    results_path = '../res/' + pv_type + '/' + 'model_results.csv'
-    results_data = {'Model Name': model_names, 'Model RMSE': rmse_list, 'Model Scatter Index': si_list}
-    results_df = pd.DataFrame(results_data)
-    results_df.to_csv(results_path, index=False)
