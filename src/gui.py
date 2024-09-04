@@ -1,9 +1,8 @@
-import pickle
+
 import tkinter
 from tkinter import filedialog
-import os
-import pandas as pd
-from src.preprocessData import Preprocessor, process_model_data
+from src.preprocessData import *
+from predictionGenerator import *
 
 
 def preprocess_sheet(preprocess, scale, curr_sheet):
@@ -27,24 +26,18 @@ class Gui():
         self.sheet_names_to_process = []
         self.best_model = None
         self.scaler = None
+        self.predictor = None
 
     def click_submit_radio(self, radio_win):
         selected = self.selected_radio.get()
+        # Close the window
+        radio_win.destroy()
         if selected == "Opaque Panels":
             print("You selected Opaque Panels.")
-            # load current best model
-
-            self.best_model = pickle.load(
-                open(r'../res/Canopy_Section_A_BatchResults_all_Panels/SVR_tuned.pkl', 'rb'))
-
-            self.scaler = pickle.load(open(r'../res/Canopy_Section_A_BatchResults_all_Panels/StandardScaler.pkl', 'rb'))
+            self.predictor = OpaquePredictor()
         elif selected == "Semi-Opaque Panels":
             print("You selected Semi-Opaque Panels.")
-            self.best_model = pickle.load(
-                open(r'../res/Canopy_Section_A_BatchResults_all_Panels/SVR_tuned.pkl', 'rb'))
-
-            self.scaler = pickle.load(open(r'../res/Canopy_Section_A_BatchResults_all_Panels/StandardScaler.pkl', 'rb'))
-        radio_win.destroy()  # Close the window
+            self.predictor = SemiOpaquePredictor()
 
     def click_submit_listbox(self, sheet_listbox, sheet_listbox_win):
         selected_indices = sheet_listbox.curselection()
@@ -97,7 +90,7 @@ class Gui():
 
         self.make_radiobuttons()
 
-        if self.best_model is None or self.scaler is None:
+        if self.predictor is None:
             print("No panel type selected, aborting...")
             return
 
@@ -106,17 +99,17 @@ class Gui():
                 preprocessor = Preprocessor(file)
                 sheet_names = pd.read_excel(file, sheet_name=None)
 
-                sheet_names_to_process = []
-
                 self.make_listbox(sheet_names)
 
                 for sheet in self.sheet_names_to_process:
-                    scaled_data, df = preprocess_sheet(preprocessor, self.scaler, sheet)
+                    df = preprocessor.read_worksheet(columns=["Sheds Tilt", "Sheds Azim"], sheet=sheet)
+                    df = process_model_data(df)
+
+                    # remove all non-numeric data
+                    df = remove_non_numeric(df)
 
                     # make predictions
-                    predictions = self.best_model.predict(scaled_data)
-                    predictions = [round(pred, 4) for pred in predictions]
-                    df['EArray (KWh)'] = predictions
+                    df = self.predictor.make_predictions(df)
 
                     base_string = sheet.strip()
                     base_string = base_string.replace(" ", "").replace("_", "")

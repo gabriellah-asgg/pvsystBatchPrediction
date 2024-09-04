@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="gui is up and running">
+    <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="fixed some gui bugs">
+      <change afterPath="$PROJECT_DIR$/src/predictionGenerator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/preprocessData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/preprocessData.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,21 +25,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "gabriellah-asgg"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;gabriellah-asgg&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/gabriellah-asgg/pvsystBatchPrediction",
-    "accountId": "c72f5015-3868-4b03-8807-3f84f66ce33e"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/gabriellah-asgg/pvsystBatchPrediction&quot;,
+    &quot;accountId&quot;: &quot;c72f5015-3868-4b03-8807-3f84f66ce33e&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2kwE7S4smGlE4PGEfWf6vE0vlJO" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -57,6 +59,7 @@
     "Python.makeSemiOpaquePredictions.executor": "Debug",
     "Python.modelBuilder.executor": "Run",
     "Python.opaquePanels.executor": "Debug",
+    "Python.predictionGenerator.executor": "Debug",
     "Python.preprocessData.executor": "Debug",
     "Python.pvPanelSemiOpaque.executor": "Debug",
     "Python.semiOpaqueModel.executor": "Debug",
@@ -152,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725463548524</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fixed some gui bugs">
+      <option name="closed" value="true" />
+      <created>1725464803386</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1725464803386</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -175,7 +186,8 @@
     <MESSAGE value="renamed pkl files" />
     <MESSAGE value="created worst case scenario model and restructured json" />
     <MESSAGE value="gui is up and running" />
-    <option name="LAST_COMMIT_MESSAGE" value="gui is up and running" />
+    <MESSAGE value="fixed some gui bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed some gui bugs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -191,19 +203,9 @@
           <option name="timeStamp" value="90" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/gui.py</url>
-          <line>116</line>
-          <option name="timeStamp" value="105" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/gui.py</url>
-          <line>117</line>
-          <option name="timeStamp" value="106" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/gui.py</url>
-          <line>118</line>
-          <option name="timeStamp" value="107" />
+          <url>file://$PROJECT_DIR$/src/predictionGenerator.py</url>
+          <line>37</line>
+          <option name="timeStamp" value="111" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

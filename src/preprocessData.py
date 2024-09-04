@@ -18,6 +18,13 @@ def process_model_data(df_to_process):
     return model_df
 
 
+def remove_non_numeric(df):
+    # remove all non-numeric data
+    df = df.apply(pd.to_numeric, errors='coerce')
+    df.dropna(axis=0, inplace=True)
+    return df
+
+
 class Preprocessor:
     def __init__(self, filepath):
         self.filepath = filepath
@@ -62,3 +69,4 @@ class Preprocessor:
         display_df.rename(columns=col_dict, inplace=True)
         print(display_df.head())
         return display_df
+
