@@ -34,6 +34,21 @@ class Preprocessor:
         display_df.rename(columns=col_dict, inplace=True)
         print(display_df.head())
         return display_df
+    def select_worksheet(self, skip_rows=0, names=None, index_col=None, column_names=None):
+        if column_names is None:
+            column_names = ["Indent", "Sheds Tilt", "Sheds Azim", "NB Strings in Parallel", "NB Inverter or MPPT", "Comment",
+                       "Error", "EArray (KWh)"]
+        display_df = pd.read_excel(self.filepath, skiprows=skip_rows, names=names, index_col=index_col,
+                                   sheet_name=None)
+        for sheet_name in display_df.items():
+            temp_df = display_df[sheet_name]
+            new_sheet = sheet_name.strip()
+        col_dict = {}
+        for i, col in enumerate(display_df.columns):
+            col_dict[col] = column_names[i]
+        display_df.rename(columns=col_dict, inplace=True)
+        print(display_df.head())
+        return display_df
 
     def read_csv(self, skip_rows=0, names=None, index_col=None, columns=None):
         '''function to preprocess data'''

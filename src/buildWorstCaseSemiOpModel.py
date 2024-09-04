@@ -15,8 +15,7 @@ model_params = {}
 ''' PARAMETER DICTIONARIES FOR MODELS'''
 # define dictionaries
 svr_params = {}
-svr_params_cv = {'kernel': ('linear', 'rbf', 'sigmoid', 'poly'),
-                 'C': [1, 10]}
+svr_params_cv = {'kernel':['rbf'], 'C':[10]}
 
 ridge_params = {}
 ridge_params_cv = {'solver': ('auto', 'svd', 'lsqr'),
@@ -40,9 +39,9 @@ model_df = construct_df(filepath, columns)
 # standardize data
 scaler = StandardScaler()
 y = model_df['EArray (KWh)']
-X = model_df.drop(['EArray (KWh)'], axis=1)
+X = model_df.drop(['EArray (KWh)',"EArray (KWh)", "LCR Ratio", "Ls", "Lc"], axis=1)
 X_scaled = scaler.fit_transform(X)
-pv_type = filepath.split('\\')[-1].replace(".CSV", "")
+pv_type = filepath.split('\\')[-1].replace(".csv", "")
 export_model(scaler, pv_type, False)
 
 # split for train and test

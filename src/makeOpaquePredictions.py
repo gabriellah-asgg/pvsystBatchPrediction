@@ -17,7 +17,12 @@ filepaths = [f.strip().strip('"') for f in filepaths]
 for file in filepaths:
     try:
         preprocessor = Preprocessor(file)
-        df = preprocessor.read_worksheet(columns=["Sheds Tilt", "Sheds Azim"])
+        sheet_name = input("Enter sheet name to read from or hit enter to read from first sheet: ")
+        if sheet_name.strip() == "":
+            sheet_name = 0
+        if sheet_name.strip().isdigit():
+            sheet_name = int(sheet_name.strip())
+        df = preprocessor.read_worksheet(columns=["Sheds Tilt", "Sheds Azim"], sheet=sheet_name)
 
         df = process_model_data(df)
 
@@ -33,6 +38,6 @@ for file in filepaths:
         predictions = [round(pred, 4) for pred in predictions]
         df['EArray (KWh)'] = predictions
         with pd.ExcelWriter(file, engine='openpyxl', mode='a') as writer:
-            df.to_excel(writer, sheet_name='OpaquePredictions', index=False)
+            df.to_excel(writer, sheet_name="CentralUtilPredictions", index=False)
     except FileNotFoundError:
         print("Error file " + file + " could not be found. Please check filepath and try again. \n")

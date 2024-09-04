@@ -388,41 +388,10 @@
             }
         },
         "Semi Opaque Panels_Worst Case Scenario.CSV": {
-            "Best Model": "SVR_tuned",
-            "Best Model Score": 0.05200088112465047,
-            "Best Model SI": 0.016560683196085703,
+            "Best Model": "SVR",
+            "Best Model Score": 0.05174849147248256,
+            "Best Model SI": 0.016480586051539296,
             "Models": {
-                "SVR": {
-                    "best_tuned_params": {
-                        "C": 10,
-                        "kernel": "rbf"
-                    },
-                    "best_tuned_rmse": 0.05200088112465047,
-                    "best_tuned_si": 0.016560683196085703,
-                    "param_variations": [
-                        {
-                            "params": {},
-                            "RMSE": 0.06275478851818439,
-                            "SI": 0.01998539759831718
-                        },
-                        {
-                            "params": {
-                                "kernel": [
-                                    "linear",
-                                    "rbf",
-                                    "sigmoid",
-                                    "poly"
-                                ],
-                                "C": [
-                                    1,
-                                    10
-                                ]
-                            },
-                            "RMSE": 0.05200088112465047,
-                            "SI": 0.016560683196085703
-                        }
-                    ]
-                },
                 "Ridge": {
                     "best_tuned_params": {
                         "alpha": 1,
@@ -440,8 +409,8 @@
                             "params": {
                                 "solver": [
                                     "auto",
-                                    "svd",
-                                    "lsqr"
+                                    "lsqr",
+                                    "svd"
                                 ],
                                 "alpha": [
                                     1,
@@ -510,8 +479,8 @@
                                 "alpha": 10,
                                 "hidden_layer_sizes": [
                                     18,
-                                    24,
-                                    18
+                                    18,
+                                    24
                                 ],
                                 "learning_rate": "constant",
                                 "learning_rate_init": 0.1,
@@ -523,8 +492,8 @@
                         {
                             "params": {
                                 "solver": [
-                                    "sgd",
-                                    "adam"
+                                    "adam",
+                                    "sgd"
                                 ],
                                 "alpha": [
                                     0.0001,
@@ -533,8 +502,8 @@
                                     1
                                 ],
                                 "learning_rate": [
-                                    "constant",
-                                    "adaptive"
+                                    "adaptive",
+                                    "constant"
                                 ],
                                 "learning_rate_init": [
                                     0.001,
@@ -556,6 +525,160 @@
                             },
                             "RMSE": 0.8347522683969457,
                             "SI": 0.2663542077129477
+                        }
+                    ]
+                },
+                "SVR": {
+                    "best_tuned_params": {
+                        "C": 10,
+                        "kernel": "rbf"
+                    },
+                    "best_tuned_rmse": 0.05174849147248256,
+                    "best_tuned_si": 0.016480586051539296,
+                    "param_variations": [
+                        {
+                            "params": {},
+                            "RMSE": 0.05938620419814773,
+                            "SI": 0.01891294414269588
+                        },
+                        {
+                            "params": {
+                                "kernel": [
+                                    "rbf"
+                                ],
+                                "C": [
+                                    10
+                                ]
+                            },
+                            "RMSE": 0.05174849147248256,
+                            "SI": 0.016480586051539296
+                        }
+                    ]
+                }
+            }
+        },
+        "Canopy_BatchResults_Semi Opaque Panels_Best Case Scenario": {
+            "Best Model": "SVR_tuned",
+            "Best Model Score": 0.05410648682108229,
+            "Best Model SI": 0.009000408548610365,
+            "Models": {
+                "SVR": {
+                    "best_tuned_params": {
+                        "C": 10,
+                        "kernel": "rbf"
+                    },
+                    "best_tuned_rmse": 0.05410648682108229,
+                    "best_tuned_si": 0.009000408548610365,
+                    "param_variations": [
+                        {
+                            "params": {},
+                            "RMSE": 0.11335748755184447,
+                            "SI": 0.01885670168501402
+                        },
+                        {
+                            "params": {
+                                "kernel": [
+                                    "linear",
+                                    "rbf",
+                                    "sigmoid",
+                                    "poly"
+                                ],
+                                "C": [
+                                    1,
+                                    10
+                                ]
+                            },
+                            "RMSE": 0.05410648682108229,
+                            "SI": 0.009000408548610365
+                        }
+                    ]
+                },
+                "Ridge": {
+                    "best_tuned_params": {
+                        "alpha": 1,
+                        "solver": "lsqr"
+                    },
+                    "best_tuned_rmse": 0.28097024643442137,
+                    "best_tuned_si": 0.04673875178319567,
+                    "param_variations": [
+                        {
+                            "params": {},
+                            "RMSE": 0.28097024643442126,
+                            "SI": 0.04673875178319565
+                        },
+                        {
+                            "params": {
+                                "solver": [
+                                    "auto",
+                                    "svd",
+                                    "lsqr"
+                                ],
+                                "alpha": [
+                                    1,
+                                    1.5,
+                                    5,
+                                    10,
+                                    20,
+                                    50
+                                ]
+                            },
+                            "RMSE": 0.28097024643442137,
+                            "SI": 0.04673875178319567
+                        }
+                    ]
+                },
+                "Lasso": {
+                    "best_tuned_params": {
+                        "alpha": 0.01
+                    },
+                    "best_tuned_rmse": 0.2823101153682686,
+                    "best_tuned_si": 0.04696159036722771,
+                    "param_variations": [
+                        {
+                            "params": {},
+                            "RMSE": 1.1261954045612068,
+                            "SI": 0.1873230894701487
+                        },
+                        {
+                            "params": {
+                                "alpha": [
+                                    0.01,
+                                    0.1,
+                                    0.5,
+                                    1,
+                                    1.5,
+                                    5,
+                                    10,
+                                    20,
+                                    50
+                                ]
+                            },
+                            "RMSE": 0.2823101153682686,
+                            "SI": 0.04696159036722771
+                        }
+                    ]
+                },
+                "MLPRegressor": {
+                    "best_tuned_params": {},
+                    "best_tuned_rmse": null,
+                    "best_tuned_si": null,
+                    "param_variations": [
+                        {
+                            "params": {
+                                "random_state": 42,
+                                "activation": "relu",
+                                "alpha": 10,
+                                "hidden_layer_sizes": [
+                                    18,
+                                    24,
+                                    18
+                                ],
+                                "learning_rate": "constant",
+                                "learning_rate_init": 0.1,
+                                "solver": "adam"
+                            },
+                            "RMSE": 0.2146208585714741,
+                            "SI": 0.035708400016752996
                         }
                     ]
                 }
