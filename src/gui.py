@@ -69,11 +69,7 @@ class Gui():
         listbox_win.geometry("600x400")
         listbox_win.mainloop()
 
-    def run(self):
-
-        files = tkinter.filedialog.askopenfilenames(title="Select file to read from:")
-        print(files)
-
+    def make_radiobuttons(self):
         radio_win = tkinter.Tk()
         self.selected_radio = tkinter.StringVar()
         self.selected_radio.set(' ')
@@ -88,11 +84,18 @@ class Gui():
         radio_semiopaque.pack(anchor='w')
 
         rad_submit_button = tkinter.Button(radio_win, text='Submit',
-                                       command=lambda: self.click_submit_radio(radio_win))
-        rad_submit_button.pack(side='bottom',pady=5)
+                                           command=lambda: self.click_submit_radio(radio_win))
+        rad_submit_button.pack(side='bottom', pady=5)
 
         radio_win.geometry("400x250")
         radio_win.mainloop()
+
+    def run(self):
+
+        files = tkinter.filedialog.askopenfilenames(title="Select file to read from:")
+        print(files)
+
+        self.make_radiobuttons()
 
         if self.best_model is None or self.scaler is None:
             print("No panel type selected, aborting...")
