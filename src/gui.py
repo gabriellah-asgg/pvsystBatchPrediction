@@ -2,9 +2,9 @@
 import tkinter
 from tkinter import filedialog
 from src.preprocessData import *
-from predictionGenerator import *
+from src.predictionGenerator import *
 
-
+rand = 42
 def preprocess_sheet(preprocess, scale, curr_sheet):
     df = preprocess.read_worksheet(columns=["Sheds Tilt", "Sheds Azim"], sheet=curr_sheet)
 

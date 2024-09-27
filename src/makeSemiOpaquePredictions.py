@@ -1,6 +1,5 @@
 import pickle
-import pandas as pd
-from preprocessData import *
+from src.preprocessData import *
 # load current best model
 best_model = pickle.load(open(r'../res/Canopy_BatchResults_Semi Opaque Panels/SVR_tuned.pkl', 'rb'))
 scaler = pickle.load(open(r'../res/Canopy_BatchResults_Semi Opaque Panels/StandardScaler.pkl', 'rb'))

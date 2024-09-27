@@ -1,12 +1,14 @@
-import pandas as pd
-
-from preprocessData import Preprocessor
-import preprocessData as preprocess
+from src.preprocessData import Preprocessor
+from src import preprocessData as preprocess
 import numpy as np
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import root_mean_squared_error
 import pickle
 import os
+import tensorflow as tf
+
+from tensorflow import keras
+from tensorflow.keras import layers
 import warnings
 
 
@@ -88,6 +90,39 @@ def build_models(model, xtrain, ytrain, xtest, ytest, model_names, rmse_list, si
     return model, rmse, si, model_names, rmse_list, si_list
 
 
+def build_tf_models(model, xtrain, ytrain, xtest, ytest, model_names, rmse_list, si_list, compile_params, fit_params):
+    # make model
+    model.compile(**compile_params)
+    model.fit(xtrain, ytrain, **fit_params)
+    y_pred = model.predict(xtest)
+
+    # evaluate results
+    rmse = root_mean_squared_error(ytest, y_pred)
+    print("RMSE of non-tuned " + str(model.__class__.__name__) + ": " + str(rmse))
+
+    # scatter index
+    si = calc_scatter_index(rmse, y_pred, model)
+
+    model_names.append(str(model.__class__.__name__))
+    rmse_list.append(rmse)
+    si_list.append(si)
+
+    # add model with params to params dict
+
+    return model, rmse, si, model_names, rmse_list, si_list
+
+
+def serialize_parameters(params, key_params, dict):
+    element_configs = []
+    for element in params:
+        element_config = element.get_config()
+        configs = {}
+        for key_p in key_params:
+            configs[key_p] = element_config[key_p]
+        element_configs.append(configs)
+
+
+
 def tune_models(model, param_grid, xtrain, ytrain, xtest, ytest, model_names, rmse_list, si_list, cv=15, verbose=0,
                 scoring='neg_root_mean_squared_error'):
     """
@@ -122,5 +157,3 @@ def tune_models(model, param_grid, xtrain, ytrain, xtest, ytest, model_names, rm
     si_list.append(si_tuned)
 
     return hypertuned_model, rmse_tuned, si_tuned, model_names, rmse_list, si_list, gridsearch.best_params_
-
-

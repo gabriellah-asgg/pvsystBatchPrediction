@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import pickle
 
+rand = 42
 
 class Predictor(ABC):
     def __init__(self):
@@ -28,9 +29,9 @@ class OpaquePredictor(Predictor):
 
     def load_model_and_scaler(self):
         self.best_model = pickle.load(
-            open(r'../res/Canopy_Section_A_BatchResults_all_Panels/SVR_tuned.pkl', 'rb'))
+            open(r'..\res\combined_canopy_data\MLPRegressor_tuned.pkl', 'rb'))
 
-        self.scaler = pickle.load(open(r'../res/Canopy_Section_A_BatchResults_all_Panels/StandardScaler.pkl', 'rb'))
+        self.scaler = pickle.load(open(r'../res/combined_canopy_data/StandardScaler.pkl', 'rb'))
 
 
 class SemiOpaquePredictor(Predictor):
@@ -43,7 +44,8 @@ class SemiOpaquePredictor(Predictor):
     def load_model_and_scaler(self):
         self.best_model = pickle.load(
             open(r'../res/Canopy_BatchResults_Semi Opaque Panels_Best Case Scenario/SVR_tuned.pkl', 'rb'))
-        self.scaler = pickle.load(open(r'../res/Canopy_BatchResults_Semi Opaque Panels_Best Case Scenario/StandardScaler.pkl', 'rb'))
+        self.scaler = pickle.load(open(
+            r'../res/Canopy_BatchResults_Semi Opaque Panels_Best Case Scenario/StandardScaler.pkl', 'rb'))
 
     def load_worst_case_model_and_scaler(self):
         self.worst_case_model = pickle.load(

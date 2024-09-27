@@ -2,15 +2,19 @@ import pandas as pd
 
 
 def process_model_data(df_to_process):
+    input_features = ['Sheds Tilt', 'Sheds Azim']
     # drop non-numeric columns and columns that are all nan
     model_df = df_to_process.apply(pd.to_numeric, errors='coerce')
     model_df.dropna(axis=1, how='all', inplace=True)
+
+    #drop rows that are all nan
+    model_df.dropna(axis=0, how='all', inplace=True)
 
     # drop columns where all values are the same
     cols_to_drop = []
     for col in model_df.columns:
         unique_vals = model_df[col].nunique()
-        if unique_vals < 2:
+        if unique_vals < 2 and col not in input_features:
             cols_to_drop.append(col)
 
     model_df.drop(columns=cols_to_drop, inplace=True)

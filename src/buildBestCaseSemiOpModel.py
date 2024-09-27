@@ -31,7 +31,7 @@ nn_params = {'random_state':rand, 'activation':'relu', 'alpha':10, 'hidden_layer
 nn_params_cv = {'solver': ('sgd', 'adam'), 'alpha': [.0001, .001, .01, 1],
             'learning_rate': ('constant', 'adaptive'),
             'learning_rate_init': [.001, .01, .1],
-            'hidden_layer_sizes': [[18,24,18], [20, 50, 20]]}
+            'hidden_layer_sizes': [[[18,24,18], [20, 50, 20]]]}
 
 
 filepath = r"Q:\Projects\224008\DESIGN\ANALYSIS\00_PV\PVsyst Batch Simulation\PV Batch Simulation_0815\Canopy_BatchResults_Semi Opaque Panels_Best Case Scenario.xlsx"

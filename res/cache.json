@@ -579,9 +579,9 @@
                             "params": {
                                 "kernel": [
                                     "linear",
+                                    "poly",
                                     "rbf",
-                                    "sigmoid",
-                                    "poly"
+                                    "sigmoid"
                                 ],
                                 "C": [
                                     1,
@@ -610,8 +610,8 @@
                             "params": {
                                 "solver": [
                                     "auto",
-                                    "svd",
-                                    "lsqr"
+                                    "lsqr",
+                                    "svd"
                                 ],
                                 "alpha": [
                                     1,
@@ -659,6 +659,176 @@
                     ]
                 },
                 "MLPRegressor": {
+                    "best_tuned_params": {
+                        "alpha": 1,
+                        "hidden_layer_sizes": [
+                            18,
+                            24,
+                            18
+                        ],
+                        "learning_rate": "constant",
+                        "learning_rate_init": 0.1,
+                        "solver": "adam"
+                    },
+                    "best_tuned_rmse": 0.4677844803692484,
+                    "best_tuned_si": 0.07781774500929625,
+                    "param_variations": [
+                        {
+                            "params": {
+                                "random_state": 42,
+                                "activation": "relu",
+                                "alpha": 10,
+                                "hidden_layer_sizes": [
+                                    18,
+                                    18,
+                                    24
+                                ],
+                                "learning_rate": "constant",
+                                "learning_rate_init": 0.1,
+                                "solver": "adam"
+                            },
+                            "RMSE": 0.2146208585714741,
+                            "SI": 0.035708400016752996
+                        },
+                        {
+                            "params": {
+                                "solver": [
+                                    "adam",
+                                    "sgd"
+                                ],
+                                "alpha": [
+                                    0.0001,
+                                    0.001,
+                                    0.01,
+                                    1
+                                ],
+                                "learning_rate": [
+                                    "adaptive",
+                                    "constant"
+                                ],
+                                "learning_rate_init": [
+                                    0.001,
+                                    0.01,
+                                    0.1
+                                ],
+                                "hidden_layer_sizes": [
+                                    [
+                                        18,
+                                        24,
+                                        18
+                                    ],
+                                    [
+                                        20,
+                                        50,
+                                        20
+                                    ]
+                                ]
+                            },
+                            "RMSE": 0.4677844803692484,
+                            "SI": 0.07781774500929625
+                        }
+                    ]
+                }
+            }
+        },
+        "Semi Opaque Panels_Worst Case Scenario.xlsx": {
+            "Best Model": "SVR_tuned",
+            "Best Model Score": 0.05174849147248256,
+            "Best Model SI": 0.016480586051539296,
+            "Models": {
+                "SVR": {
+                    "best_tuned_params": {
+                        "C": 10,
+                        "kernel": "rbf"
+                    },
+                    "best_tuned_rmse": 0.05174849147248256,
+                    "best_tuned_si": 0.016480586051539296,
+                    "param_variations": [
+                        {
+                            "params": {},
+                            "RMSE": 0.05938620419814773,
+                            "SI": 0.01891294414269588
+                        },
+                        {
+                            "params": {
+                                "kernel": [
+                                    "rbf"
+                                ],
+                                "C": [
+                                    10
+                                ]
+                            },
+                            "RMSE": 0.05174849147248256,
+                            "SI": 0.016480586051539296
+                        }
+                    ]
+                },
+                "Ridge": {
+                    "best_tuned_params": {
+                        "alpha": 1,
+                        "solver": "auto"
+                    },
+                    "best_tuned_rmse": 0.13663316690315483,
+                    "best_tuned_si": 0.043514726464724,
+                    "param_variations": [
+                        {
+                            "params": {},
+                            "RMSE": 0.13663316690315483,
+                            "SI": 0.043514726464724
+                        },
+                        {
+                            "params": {
+                                "solver": [
+                                    "auto",
+                                    "svd",
+                                    "lsqr"
+                                ],
+                                "alpha": [
+                                    1,
+                                    1.5,
+                                    5,
+                                    10,
+                                    20,
+                                    50
+                                ]
+                            },
+                            "RMSE": 0.13663316690315483,
+                            "SI": 0.043514726464724
+                        }
+                    ]
+                },
+                "Lasso": {
+                    "best_tuned_params": {
+                        "alpha": 0.01
+                    },
+                    "best_tuned_rmse": 0.13702035658061698,
+                    "best_tuned_si": 0.043638059312641975,
+                    "param_variations": [
+                        {
+                            "params": {},
+                            "RMSE": 0.9937044327739519,
+                            "SI": 0.3164449804845208
+                        },
+                        {
+                            "params": {
+                                "alpha": [
+                                    0.01,
+                                    0.1,
+                                    0.5,
+                                    1,
+                                    1.5,
+                                    5,
+                                    10,
+                                    20,
+                                    50
+                                ]
+                            },
+                            "RMSE": 0.13702035658061698,
+                            "SI": 0.043638059312641975
+                        }
+                    ]
+                },
+                "MLPRegressor": {
                     "best_tuned_params": {},
                     "best_tuned_rmse": null,
                     "best_tuned_si": null,
@@ -677,8 +847,569 @@
                                 "learning_rate_init": 0.1,
                                 "solver": "adam"
                             },
-                            "RMSE": 0.2146208585714741,
-                            "SI": 0.035708400016752996
+                            "RMSE": 0.33182505782088917,
+                            "SI": 0.10577050073513133
+                        }
+                    ]
+                }
+            }
+        },
+        "combined_canopy_data": {
+            "Best Model": "MLPRegressor_tuned",
+            "Best Model Score": 4.737104249985064,
+            "Best Model SI": 0.5026179477153901,
+            "Models": {
+                "SVR": {
+                    "best_tuned_params": {
+                        "C": 1,
+                        "epsilon": 0.5,
+                        "kernel": "rbf"
+                    },
+                    "best_tuned_rmse": 5.316264110628912,
+                    "best_tuned_si": 0.5636294279262632,
+                    "param_variations": [
+                        {
+                            "params": {},
+                            "RMSE": 5.368478082814546,
+                            "SI": 0.569158000568799
+                        },
+                        {
+                            "params": {
+                                "kernel": [
+                                    "linear",
+                                    "poly",
+                                    "rbf",
+                                    "sigmoid"
+                                ],
+                                "C": [
+                                    1,
+                                    10
+                                ],
+                                "epsilon": [
+                                    0.0001,
+                                    0.001,
+                                    0.01,
+                                    0.1
+                                ]
+                            },
+                            "RMSE": 5.368478082814546,
+                            "SI": 0.569158000568799
+                        },
+                        {
+                            "params": {
+                                "kernel": [
+                                    "rbf"
+                                ],
+                                "C": [
+                                    0.1,
+                                    1
+                                ],
+                                "epsilon": [
+                                    0.1,
+                                    0.2,
+                                    0.5
+                                ]
+                            },
+                            "RMSE": 5.316264110628912,
+                            "SI": 0.5636294279262632
+                        }
+                    ]
+                },
+                "Ridge": {
+                    "best_tuned_params": {
+                        "alpha": 20,
+                        "solver": "auto"
+                    },
+                    "best_tuned_rmse": 31.73467143209301,
+                    "best_tuned_si": 3.367234359839191,
+                    "param_variations": [
+                        {
+                            "params": {},
+                            "RMSE": 31.73463937601806,
+                            "SI": 3.367231128684701
+                        },
+                        {
+                            "params": {
+                                "solver": [
+                                    "auto",
+                                    "lsqr",
+                                    "svd"
+                                ],
+                                "alpha": [
+                                    1,
+                                    1.5,
+                                    5,
+                                    10,
+                                    20,
+                                    50
+                                ]
+                            },
+                            "RMSE": 31.73467143209301,
+                            "SI": 3.367234359839191
+                        }
+                    ]
+                },
+                "Lasso": {
+                    "best_tuned_params": {
+                        "alpha": 0.01
+                    },
+                    "best_tuned_rmse": 31.73474499077857,
+                    "best_tuned_si": 3.3672417629879887,
+                    "param_variations": [
+                        {
+                            "params": {},
+                            "RMSE": 31.7788286366314,
+                            "SI": 3.371861697302634
+                        },
+                        {
+                            "params": {
+                                "alpha": [
+                                    0.01,
+                                    0.1,
+                                    0.5,
+                                    1,
+                                    1.5,
+                                    5,
+                                    10,
+                                    20,
+                                    50
+                                ]
+                            },
+                            "RMSE": 31.73474499077857,
+                            "SI": 3.3672417629879887
+                        }
+                    ]
+                },
+                "MLPRegressor": {
+                    "best_tuned_params": {
+                        "alpha": 0.01,
+                        "hidden_layer_sizes": [
+                            50,
+                            100,
+                            50
+                        ],
+                        "learning_rate": "constant",
+                        "learning_rate_init": 0.0001,
+                        "random_state": 42,
+                        "solver": "adam"
+                    },
+                    "best_tuned_rmse": 4.737104249985064,
+                    "best_tuned_si": 0.5026179477153901,
+                    "param_variations": [
+                        {
+                            "params": {
+                                "random_state": 42,
+                                "activation": "relu",
+                                "alpha": 10,
+                                "hidden_layer_sizes": [
+                                    18,
+                                    18,
+                                    24
+                                ],
+                                "learning_rate": "constant",
+                                "learning_rate_init": 0.1,
+                                "solver": "adam"
+                            },
+                            "RMSE": 23.183729468787078,
+                            "SI": 2.403736977593269
+                        },
+                        {
+                            "params": {},
+                            "RMSE": 4.858654954778487,
+                            "SI": 0.5153865074513433
+                        },
+                        {
+                            "params": {
+                                "random_state": [
+                                    42
+                                ],
+                                "activation": [
+                                    "relu",
+                                    "sigmoid"
+                                ],
+                                "solver": [
+                                    "adam",
+                                    "sgd"
+                                ],
+                                "alpha": [
+                                    0.0001,
+                                    0.001,
+                                    0.01,
+                                    1
+                                ],
+                                "learning_rate": [
+                                    "adaptive",
+                                    "constant"
+                                ],
+                                "learning_rate_init": [
+                                    0.0001,
+                                    0.001,
+                                    0.01
+                                ],
+                                "hidden_layer_sizes": [
+                                    [
+                                        18,
+                                        24,
+                                        18
+                                    ],
+                                    [
+                                        20,
+                                        50,
+                                        20
+                                    ]
+                                ]
+                            },
+                            "RMSE": 4.855636319557102,
+                            "SI": 0.515270050906429
+                        },
+                        {
+                            "params": {
+                                "random_state": [
+                                    42
+                                ],
+                                "solver": [
+                                    "sgd",
+                                    "adam"
+                                ],
+                                "alpha": [
+                                    0.0001,
+                                    0.001,
+                                    0.01,
+                                    1
+                                ],
+                                "learning_rate": [
+                                    "constant",
+                                    "adaptive"
+                                ],
+                                "learning_rate_init": [
+                                    0.0001,
+                                    0.001,
+                                    0.01
+                                ],
+                                "hidden_layer_sizes": [
+                                    [
+                                        50,
+                                        100,
+                                        50
+                                    ]
+                                ]
+                            },
+                            "RMSE": 4.737104249985064,
+                            "SI": 0.5026179477153901
+                        }
+                    ]
+                },
+                "Sequential": {
+                    "best_tuned_params": {},
+                    "best_tuned_rmse": null,
+                    "best_tuned_si": null,
+                    "param_variations": [
+                        {
+                            "params": {
+                                "layers": [
+                                    {
+                                        "units": 32,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 64,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 64,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 32,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 1,
+                                        "activation": "linear"
+                                    }
+                                ],
+                                "loss": "mean_absolute_error",
+                                "optimizer": [
+                                    "adam",
+                                    0.0010000000474974513,
+                                    1e-07
+                                ],
+                                "validation_split": 0.2,
+                                "verbose": 2,
+                                "epochs": 100,
+                                "callbacks": {
+                                    "monitor": "val_loss",
+                                    "patience": 3
+                                }
+                            },
+                            "RMSE": 6.2098469865195165,
+                            "SI": 0.656774146545744
+                        },
+                        {
+                            "params": {
+                                "layers": [
+                                    {
+                                        "units": 32,
+                                        "activation": "sigmoid"
+                                    },
+                                    {
+                                        "units": 64,
+                                        "activation": "sigmoid"
+                                    },
+                                    {
+                                        "units": 64,
+                                        "activation": "sigmoid"
+                                    },
+                                    {
+                                        "units": 32,
+                                        "activation": "sigmoid"
+                                    },
+                                    {
+                                        "units": 1,
+                                        "activation": "linear"
+                                    }
+                                ],
+                                "loss": "mean_absolute_error",
+                                "optimizer": [
+                                    "adam",
+                                    0.0010000000474974513,
+                                    1e-07
+                                ],
+                                "validation_split": 0.2,
+                                "verbose": 2,
+                                "epochs": 100,
+                                "callbacks": {
+                                    "monitor": "val_loss",
+                                    "patience": 3
+                                }
+                            },
+                            "RMSE": 33.826976632888716,
+                            "SI": 3.58316716176262
+                        },
+                        {
+                            "params": {
+                                "layers": [
+                                    {
+                                        "units": 32,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 64,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 64,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 128,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 128,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 64,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 64,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 32,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 1,
+                                        "activation": "linear"
+                                    }
+                                ],
+                                "loss": "mean_absolute_error",
+                                "optimizer": [
+                                    "adam",
+                                    0.0010000000474974513,
+                                    1e-07
+                                ],
+                                "validation_split": 0.2,
+                                "verbose": 2,
+                                "epochs": 100,
+                                "callbacks": {
+                                    "monitor": "val_loss",
+                                    "patience": 3
+                                }
+                            },
+                            "RMSE": 5.644682308989526,
+                            "SI": 0.5989765440738758
+                        },
+                        {
+                            "params": {
+                                "layers": [
+                                    {
+                                        "units": 32,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 64,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 128,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 64,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 32,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 1,
+                                        "activation": "linear"
+                                    }
+                                ],
+                                "loss": "mean_absolute_error",
+                                "optimizer": [
+                                    "adam",
+                                    0.0010000000474974513,
+                                    1e-07
+                                ],
+                                "validation_split": 0.2,
+                                "verbose": 2,
+                                "epochs": 100,
+                                "callbacks": {
+                                    "monitor": "val_loss",
+                                    "patience": 3
+                                }
+                            },
+                            "RMSE": 7.236517616202116,
+                            "SI": 0.7635528080993923
+                        },
+                        {
+                            "params": {
+                                "layers": [
+                                    {
+                                        "units": 32,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 64,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 64,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 32,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 1,
+                                        "activation": "linear"
+                                    }
+                                ],
+                                "loss": "mean_absolute_error",
+                                "optimizer": [
+                                    "adam",
+                                    0.009999999776482582,
+                                    1e-07
+                                ],
+                                "validation_split": 0.2,
+                                "verbose": 2,
+                                "epochs": 100,
+                                "callbacks": {
+                                    "monitor": "val_loss",
+                                    "patience": 4
+                                }
+                            },
+                            "RMSE": 19.09627678780795,
+                            "SI": 1.987202340089313
+                        },
+                        {
+                            "params": {
+                                "layers": [
+                                    {
+                                        "units": 32,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 64,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 64,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 32,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 1,
+                                        "activation": "linear"
+                                    }
+                                ],
+                                "loss": "mean_absolute_error",
+                                "optimizer": [
+                                    "adam",
+                                    9.999999747378752e-05,
+                                    1e-07
+                                ],
+                                "validation_split": 0.2,
+                                "verbose": 2,
+                                "epochs": 100,
+                                "callbacks": {
+                                    "monitor": "val_loss",
+                                    "patience": 4
+                                }
+                            },
+                            "RMSE": 5.431879460861872,
+                            "SI": 0.5763371346115145
+                        },
+                        {
+                            "params": {
+                                "layers": [
+                                    {
+                                        "units": 32,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 64,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 64,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 32,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 1,
+                                        "activation": "linear"
+                                    }
+                                ],
+                                "loss": "mean_absolute_error",
+                                "optimizer": [
+                                    "adam",
+                                    9.999999747378752e-05,
+                                    1e-07
+                                ],
+                                "validation_split": 0.2,
+                                "verbose": 2,
+                                "epochs": 100,
+                                "callbacks": {
+                                    "monitor": "val_loss",
+                                    "patience": 4
+                                }
+                            },
+                            "RMSE": 5.431879460861872,
+                            "SI": 0.5763371346115145
                         }
                     ]
                 }

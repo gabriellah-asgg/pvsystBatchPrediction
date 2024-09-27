@@ -4,10 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="fixed some gui bugs">
-      <change afterPath="$PROJECT_DIR$/src/predictionGenerator.py" afterDir="false" />
+    <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="added in abstract prediction class">
+      <change afterPath="$PROJECT_DIR$/src/buildOpaqueModelCombinedData.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/deSecondBatch.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sequentialModel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tiltExperiments.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/buildBestCaseSemiOpModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/buildBestCaseSemiOpModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataExploration.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataExploration.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jsonWriter.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsonWriter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/makeSemiOpaquePredictions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/makeSemiOpaquePredictions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelBuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelBuilder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/predictionGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/predictionGenerator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/preprocessData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/preprocessData.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,29 +60,39 @@
   "keyToString": {
     "Python.buildBestCaseSemiOpModel.executor": "Run",
     "Python.buildModel.executor": "Run",
-    "Python.buildWorstCaseSemiOpModel.executor": "Debug",
+    "Python.buildOpaqueModelCombinedData.executor": "Run",
+    "Python.buildWorstCaseSemiOpModel.executor": "Run",
     "Python.dataExploration.executor": "Run",
+    "Python.deSecondBatch.executor": "Run",
     "Python.gui.executor": "Debug",
     "Python.jsonWriter.executor": "Debug",
     "Python.makeOpaquePredictions.executor": "Run",
     "Python.makePredictions.executor": "Run",
     "Python.makeSemiOpaquePredictions.executor": "Debug",
-    "Python.modelBuilder.executor": "Run",
+    "Python.modelBuilder.executor": "Debug",
     "Python.opaquePanels.executor": "Debug",
     "Python.predictionGenerator.executor": "Debug",
     "Python.preprocessData.executor": "Debug",
     "Python.pvPanelSemiOpaque.executor": "Debug",
     "Python.semiOpaqueModel.executor": "Debug",
     "Python.semiOpaquePredictions.executor": "Run",
+    "Python.tiltExperiments.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/gabriellahoover/ozingaAutomation/ozingaAutomation.py"
+    "last_opened_file_path": "C:/Users/gabriellahoover/PycharmProjects/pvsystBatchPrediction"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "PLAIN_TEXT"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\gabriellahoover\PycharmProjects\pvsystBatchPrediction\res\Canopy_Section_A_BatchResults_all_Panels" />
       <recent name="C:\Users\gabriellahoover\PycharmProjects\pvsystBatchPrediction\src" />
+      <recent name="C:\Users\gabriellahoover\PycharmProjects\pvsystBatchPrediction\src\featureSet2" />
+      <recent name="C:\Users\gabriellahoover\PycharmProjects\pvsystBatchPrediction\src\featureSet1" />
+      <recent name="C:\Users\gabriellahoover\PycharmProjects\pvsystBatchPrediction\res\Canopy_Section_A_BatchResults_all_Panels" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -163,7 +183,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725464803386</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="added in abstract prediction class">
+      <option name="closed" value="true" />
+      <created>1725476227351</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1725476227351</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -187,7 +215,8 @@
     <MESSAGE value="created worst case scenario model and restructured json" />
     <MESSAGE value="gui is up and running" />
     <MESSAGE value="fixed some gui bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed some gui bugs" />
+    <MESSAGE value="added in abstract prediction class" />
+    <option name="LAST_COMMIT_MESSAGE" value="added in abstract prediction class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -198,14 +227,44 @@
           <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/buildWorstCaseSemiOpModel.py</url>
-          <line>102</line>
-          <option name="timeStamp" value="90" />
+          <url>file://$PROJECT_DIR$/src/dataExploration.py</url>
+          <line>56</line>
+          <option name="timeStamp" value="116" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/gui.py</url>
+          <line>111</line>
+          <option name="timeStamp" value="117" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/gui.py</url>
+          <line>104</line>
+          <option name="timeStamp" value="118" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/buildOpaqueModelCombinedData.py</url>
+          <line>155</line>
+          <option name="timeStamp" value="131" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/modelBuilder.py</url>
+          <line>95</line>
+          <option name="timeStamp" value="133" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/gui.py</url>
+          <line>36</line>
+          <option name="timeStamp" value="135" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/predictionGenerator.py</url>
-          <line>37</line>
-          <option name="timeStamp" value="111" />
+          <line>30</line>
+          <option name="timeStamp" value="136" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/predictionGenerator.py</url>
+          <line>33</line>
+          <option name="timeStamp" value="137" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
