@@ -1,24 +1,31 @@
 {
-    "PV Panel Type": {
+    "Dataset Type": {
         "ohmloss_data": {
             "Best Model": "MLPRegressor_tuned",
             "Best Model Score": 0.011085140108427663,
             "Best Model SI": 0.09755558897851555,
             "Models": {
                 "SVR": {
-                    "best_tuned_params": {
-                        "C": 1,
-                        "epsilon": 0.1,
-                        "kernel": "rbf"
-                    },
-                    "best_tuned_rmse": 0.07471146710684146,
-                    "best_tuned_si": 0.6595625903183697,
+                    "best_params": {},
+                    "best_rmse": 0.07471146710684146,
+                    "best_si": 0.6595625903183697,
                     "param_variations": [
                         {
                             "params": {},
                             "RMSE": 0.07471146710684146,
                             "SI": 0.6595625903183697
-                        },
+                        }
+                    ]
+                },
+                "SVR_tuned": {
+                    "best_params": {
+                        "C": 1,
+                        "epsilon": 0.1,
+                        "kernel": "rbf"
+                    },
+                    "best_rmse": 0.07471146710684146,
+                    "best_si": 0.6595625903183697,
+                    "param_variations": [
                         {
                             "params": {
                                 "kernel": [
@@ -40,18 +47,25 @@
                     ]
                 },
                 "Ridge": {
-                    "best_tuned_params": {
-                        "alpha": 10,
-                        "solver": "auto"
-                    },
-                    "best_tuned_rmse": 0.7460730847383765,
-                    "best_tuned_si": 6.565212283492238,
+                    "best_params": {},
+                    "best_rmse": 0.7460733427861064,
+                    "best_si": 6.565214784933169,
                     "param_variations": [
                         {
                             "params": {},
                             "RMSE": 0.7460733427861064,
                             "SI": 6.565214784933169
-                        },
+                        }
+                    ]
+                },
+                "Ridge_tuned": {
+                    "best_params": {
+                        "alpha": 10,
+                        "solver": "auto"
+                    },
+                    "best_rmse": 0.7460730847383765,
+                    "best_si": 6.565212283492238,
+                    "param_variations": [
                         {
                             "params": {
                                 "solver": [
@@ -74,17 +88,24 @@
                     ]
                 },
                 "Lasso": {
-                    "best_tuned_params": {
-                        "alpha": 0.01
-                    },
-                    "best_tuned_rmse": 0.7462244112420827,
-                    "best_tuned_si": 6.566436088086753,
+                    "best_params": {},
+                    "best_rmse": 0.7946948987444445,
+                    "best_si": 6.992508455762871,
                     "param_variations": [
                         {
                             "params": {},
                             "RMSE": 0.7946948987444445,
                             "SI": 6.992508455762871
-                        },
+                        }
+                    ]
+                },
+                "Lasso_tuned": {
+                    "best_params": {
+                        "alpha": 0.01
+                    },
+                    "best_rmse": 0.7462244112420827,
+                    "best_si": 6.566436088086753,
+                    "param_variations": [
                         {
                             "params": {
                                 "alpha": [
@@ -105,21 +126,21 @@
                     ]
                 },
                 "MLPRegressor": {
-                    "best_tuned_params": {
-                        "alpha": 0.0001,
-                        "batch_size": 64,
-                        "early_stopping": true,
-                        "hidden_layer_sizes": [
-                            128,
-                            256,
-                            128
-                        ],
-                        "learning_rate_init": 0.0001,
+                    "best_params": {
                         "random_state": 42,
-                        "shuffle": true
+                        "activation": "relu",
+                        "alpha": 10,
+                        "hidden_layer_sizes": [
+                            18,
+                            18,
+                            24
+                        ],
+                        "learning_rate": "constant",
+                        "learning_rate_init": 0.1,
+                        "solver": "adam"
                     },
-                    "best_tuned_rmse": 0.011085140108427663,
-                    "best_tuned_si": 0.09755558897851555,
+                    "best_rmse": 0.21981601578912016,
+                    "best_si": 1.9426201384363044,
                     "param_variations": [
                         {
                             "params": {
@@ -137,7 +158,26 @@
                             },
                             "RMSE": 0.21981601578912016,
                             "SI": 1.9426201384363044
-                        },
+                        }
+                    ]
+                },
+                "MLPRegressor_tuned": {
+                    "best_params": {
+                        "alpha": 0.0001,
+                        "batch_size": 64,
+                        "early_stopping": true,
+                        "hidden_layer_sizes": [
+                            128,
+                            256,
+                            128
+                        ],
+                        "learning_rate_init": 0.0001,
+                        "random_state": 42,
+                        "shuffle": true
+                    },
+                    "best_rmse": 0.011085140108427663,
+                    "best_si": 0.09755558897851555,
+                    "param_variations": [
                         {
                             "params": {
                                 "random_state": [
@@ -181,9 +221,45 @@
                     ]
                 },
                 "Sequential": {
-                    "best_tuned_params": {},
-                    "best_tuned_rmse": null,
-                    "best_tuned_si": null,
+                    "best_params": {
+                        "layers": [
+                            {
+                                "units": 32,
+                                "activation": "relu"
+                            },
+                            {
+                                "units": 64,
+                                "activation": "relu"
+                            },
+                            {
+                                "units": 64,
+                                "activation": "relu"
+                            },
+                            {
+                                "units": 32,
+                                "activation": "relu"
+                            },
+                            {
+                                "units": 1,
+                                "activation": "linear"
+                            }
+                        ],
+                        "loss": "mean_absolute_error",
+                        "optimizer": [
+                            "adam",
+                            9.999999747378752e-05,
+                            1e-07
+                        ],
+                        "validation_split": 0.2,
+                        "verbose": 2,
+                        "epochs": 100,
+                        "callbacks": {
+                            "monitor": "val_loss",
+                            "patience": 4
+                        }
+                    },
+                    "best_rmse": 0.01436651236010713,
+                    "best_si": 0.1264040941457967,
                     "param_variations": [
                         {
                             "params": {
@@ -227,6 +303,11 @@
                             "SI": 0.1264040941457967
                         }
                     ]
+                },
+                "Sequential_tuned": {
+                    "best_params": {},
+                    "best_rmse": null,
+                    "best_si": null
                 }
             }
         }
