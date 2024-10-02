@@ -16,20 +16,20 @@ keras.utils.set_random_seed(812)
 # standard random state
 rand = 42
 
-# export model
-
+json_filepath = r"../res/earray_data/earray_cache.json"
+target = "EArray (KWh)"
 
 # construct dataframe for model building
-filepath = r'Q:\Projects\224008\DESIGN\ANALYSIS\00_PV\PVsyst Batch Simulation\combined_canopy_data.xlsx'
-model_df = construct_df(filepath, columns=["Sheds Tilt", "Sheds Azim", "EArray (KWh)"])
+filepath = r'Q:\Projects\224008\DESIGN\ANALYSIS\00_PV\PVsyst Batch Simulation\earray_data.xlsx'
+model_df = construct_df(filepath, columns=["Sheds Tilt", "Sheds Azim", target])
 
 # standardize data
 scaler = StandardScaler()
-y = model_df['EArray (KWh)']
-X = model_df.drop(['EArray (KWh)'], axis=1)
+y = model_df[target]
+X = model_df.drop([target], axis=1)
 X_scaled = scaler.fit_transform(X)
 pv_type = filepath.split('\\')[-1].replace(".xlsx", "")
-export_model(scaler, '../res/combined_canopy_data/', False)
+export_model(scaler, pv_type, False)
 
 # split for train and test
 X_train, X_test, y_train, y_test = train_test_split(
@@ -58,11 +58,11 @@ lasso_params_cv = {'alpha': [0.01, 0.1, 0.5, 1, 1.5, 5, 10, 20, 50]}
 
 nn_params = {'random_state': rand, 'activation': 'relu', 'alpha': 10, 'hidden_layer_sizes': [18, 24, 18],
              'learning_rate': 'constant', 'learning_rate_init': 0.1, 'solver': 'adam'}
-nn_params_cv = {'random_state': [rand], 'batch_size': [16, 32, 64, 200], 'shuffle': [True, False],
+nn_params_cv = {'random_state': [rand], 'batch_size': [64, 200], 'shuffle': [True, False],
                 'early_stopping': [True],
-                'alpha': [.0001, .001, .01],
-                'learning_rate_init': [0.0001, .001, 0.01],
-                'hidden_layer_sizes': [[50, 100, 50], [64, 128, 64], [128, 256, 128]]}
+                'alpha': [.0001, 10],
+                'learning_rate_init': [0.0001, 0.1],
+                'hidden_layer_sizes': [[18, 24, 18], [128, 256, 128]]}
 
 seq_nn_params = [layers.Dense(32, activation='relu'),
                  layers.Dense(64, activation='relu'),
@@ -112,7 +112,7 @@ model_params[str(seq_nn_model.__class__.__name__)] = {"model": seq_nn_model, "pa
 for model in model_params.keys():
     curr_model = model_params.get(model).get("model")
     curr_param = model_params.get(model).get("param_grid")
-    skip_model = check_models_to_run(curr_model, curr_param, pv_type)
+    skip_model = check_models_to_run(curr_model, curr_param, pv_type, filepath=json_filepath)
     if not skip_model:
         if 'tuned' in model:
             train_model, rmse_score, si_score, model_names, rmse_list, si_list, best_params = tune_models(curr_model,
@@ -126,7 +126,8 @@ for model in model_params.keys():
                                                                                                           si_list,
                                                                                                           verbose=5)
             score = "_" + str(round(rmse_score, 2))
-            export = add_model_params(pv_type, curr_param, model, rmse_score, si_score, best_params)
+            export = add_model_params(pv_type, curr_param, model, rmse_score, si_score, best_params,
+                                      filepath=json_filepath)
             # only export tuned model if it is best tuned model
             if export:
                 export_model(train_model, pv_type, True, score)
@@ -159,7 +160,7 @@ for model in model_params.keys():
                                                        compile_params.get('optimizer').get_config()['epsilon']]}
                 all_params.update(serial_compile_params)
                 all_params.update(fit_params)
-                add_model_params(pv_type, all_params, model, rmse_score, si_score)
+                add_model_params(pv_type, all_params, model, rmse_score, si_score, filepath=json_filepath)
 
             else:
                 train_model, rmse_score, si_score, model_names, rmse_list, si_list = build_models(curr_model, X_train,
@@ -168,7 +169,7 @@ for model in model_params.keys():
                                                                                                   model_names,
                                                                                                   rmse_list, si_list)
                 score = "_" + str(round(rmse_score, 2))
-                add_model_params(pv_type, curr_param, model, rmse_score, si_score)
+                add_model_params(pv_type, curr_param, model, rmse_score, si_score, filepath=json_filepath)
 
             export_model(train_model, pv_type, False, score)
-export_to_csv(pv_type)
+export_to_csv(pv_type, filepath=json_filepath)

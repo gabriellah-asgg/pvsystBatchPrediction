@@ -12,11 +12,11 @@ from tensorflow.keras import layers
 import warnings
 
 
-def construct_df(filepath, columns=None):
+def construct_df(filepath, columns=None, sheet_name=0):
     # construct dataframe for model building
     preprocessor = Preprocessor(filepath)
     if ".xlsx" in filepath:
-        df = preprocessor.read_worksheet(skip_rows=11, columns=columns)
+        df = preprocessor.read_worksheet(skip_rows=11, columns=columns, sheet=sheet_name)
 
     else:
         df = preprocessor.read_csv(skip_rows=11, columns=columns)
@@ -91,6 +91,7 @@ def build_models(model, xtrain, ytrain, xtest, ytest, model_names, rmse_list, si
 
 
 def build_tf_models(model, xtrain, ytrain, xtest, ytest, model_names, rmse_list, si_list, compile_params, fit_params):
+    """function to build tensorflow models, as the architecture is not the same as keras"""
     # make model
     model.compile(**compile_params)
     model.fit(xtrain, ytrain, **fit_params)

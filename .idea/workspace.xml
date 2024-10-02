@@ -4,21 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="added in abstract prediction class">
-      <change afterPath="$PROJECT_DIR$/src/buildOpaqueModelCombinedData.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/deSecondBatch.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sequentialModel.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tiltExperiments.py" afterDir="false" />
+    <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="added in models for combined data">
+      <change afterPath="$PROJECT_DIR$/res/earray_data/earray_cache.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/earrmpp_data/earrmpp_cache.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/earrnom_data/StandardScaler.pkl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/earrnom_data/earrnom_cache.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/effarrr_data/effarrr_cache.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/effsysr_data/effsysr_cache.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/euseful_data/euseful_cache.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/ginclss_data/ginclss_cache.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/modqual_data/modqual_cache.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/ohmloss_data/ohmloss_cache.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/templss_data/templss_cache.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EArrMPPModel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EArrNomModel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EArrayModel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EUsefulModel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EffArrRModel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EffSysRModel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GIncLssModel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ModQualModel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OhmLossModel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TempLssModel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/buildBestCaseSemiOpModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/buildBestCaseSemiOpModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataExploration.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataExploration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/combined_canopy_data/Sequential.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/combined_canopy_data/Sequential.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/buildOpaqueModelCombinedData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/buildOpaqueModelCombinedData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/deSecondBatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/deSecondBatch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jsonWriter.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsonWriter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/makeSemiOpaquePredictions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/makeSemiOpaquePredictions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modelBuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelBuilder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/predictionGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/predictionGenerator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/preprocessData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/preprocessData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tiltExperiments.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,13 +74,24 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.EArrMPP.executor": "Run",
+    "Python.EArrMPPModel.executor": "Run",
+    "Python.EArrNomModel.executor": "Run",
+    "Python.EArrayModel.executor": "Run",
+    "Python.EUsefulModel.executor": "Run",
+    "Python.EffArrRModel.executor": "Run",
+    "Python.EffSysRModel.executor": "Run",
+    "Python.GIncLssModel.executor": "Debug",
+    "Python.ModQualModel.executor": "Run",
+    "Python.OhmLossModel.executor": "Run",
+    "Python.TempLssModel.executor": "Run",
     "Python.buildBestCaseSemiOpModel.executor": "Run",
     "Python.buildModel.executor": "Run",
     "Python.buildOpaqueModelCombinedData.executor": "Run",
     "Python.buildWorstCaseSemiOpModel.executor": "Run",
     "Python.dataExploration.executor": "Run",
     "Python.deSecondBatch.executor": "Run",
-    "Python.gui.executor": "Debug",
+    "Python.gui.executor": "Run",
     "Python.jsonWriter.executor": "Debug",
     "Python.makeOpaquePredictions.executor": "Run",
     "Python.makePredictions.executor": "Run",
@@ -79,7 +106,7 @@
     "Python.tiltExperiments.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/gabriellahoover/PycharmProjects/pvsystBatchPrediction"
+    "last_opened_file_path": "C:/Users/gabriellahoover/PycharmProjects/pvsystBatchPrediction/res/EArrNom"
   },
   "keyToStringList": {
     "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
@@ -88,7 +115,11 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gabriellahoover\PycharmProjects\pvsystBatchPrediction\res\EArrNom" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gabriellahoover\PycharmProjects\pvsystBatchPrediction\res\earrnom_data" />
       <recent name="C:\Users\gabriellahoover\PycharmProjects\pvsystBatchPrediction\src" />
       <recent name="C:\Users\gabriellahoover\PycharmProjects\pvsystBatchPrediction\src\featureSet2" />
       <recent name="C:\Users\gabriellahoover\PycharmProjects\pvsystBatchPrediction\src\featureSet1" />
@@ -191,7 +222,23 @@
       <option name="project" value="LOCAL" />
       <updated>1725476227351</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="added in combined data">
+      <option name="closed" value="true" />
+      <created>1727447709470</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1727447709470</updated>
+    </task>
+    <task id="LOCAL-00012" summary="added in models for combined data">
+      <option name="closed" value="true" />
+      <created>1727447759425</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1727447759425</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -216,7 +263,9 @@
     <MESSAGE value="gui is up and running" />
     <MESSAGE value="fixed some gui bugs" />
     <MESSAGE value="added in abstract prediction class" />
-    <option name="LAST_COMMIT_MESSAGE" value="added in abstract prediction class" />
+    <MESSAGE value="added in combined data" />
+    <MESSAGE value="added in models for combined data" />
+    <option name="LAST_COMMIT_MESSAGE" value="added in models for combined data" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -232,24 +281,9 @@
           <option name="timeStamp" value="116" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/gui.py</url>
-          <line>111</line>
-          <option name="timeStamp" value="117" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/gui.py</url>
-          <line>104</line>
-          <option name="timeStamp" value="118" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/buildOpaqueModelCombinedData.py</url>
           <line>155</line>
           <option name="timeStamp" value="131" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/modelBuilder.py</url>
-          <line>95</line>
-          <option name="timeStamp" value="133" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/gui.py</url>

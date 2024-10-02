@@ -11,14 +11,16 @@ from preprocessData import Preprocessor
 import preprocessData as preprocess
 from sklearn.cluster import KMeans
 
-filepath = (r'Q:\Projects\224008\DESIGN\ANALYSIS\00_PV\PVsyst Batch Simulation\MOD_Canopy_Batch_Simulation_Project_BatchResults_0.xlsx')
+filepath = (
+    r'Q:\Projects\224008\DESIGN\ANALYSIS\00_PV\PVsyst Batch Simulation\MOD_Canopy_Batch_Simulation_Project_BatchResults_0.xlsx')
 preprocessor = Preprocessor(filepath)
 df = preprocessor.read_worksheet(skip_rows=11, columns=["Indent", "Sheds Tilt", "Sheds Azim", "Comment",
-                       "Error", "Syst_ON", "EArrNom", "GIncLss", "TempLss","ModQual", "MisLoss", "OhmLoss", "EArrMPP", "EArray (KWh)", "EUseful", "EffSysR", "EffArrR", "EffArrC", "EffSysC"])
+                                                        "Error", "Syst_ON", "EArrNom", "GIncLss", "TempLss", "ModQual",
+                                                        "MisLoss", "OhmLoss", "EArrMPP", "EArray (KWh)", "EUseful",
+                                                        "EffSysR", "EffArrR", "EffArrC", "EffSysC"])
 
 # make a numeric version of the data
 numeric_data = df.drop(columns=['Comment', 'Indent', 'Error'])
-
 
 corr_matrix = numeric_data.corr()
 plt.figure()
@@ -51,7 +53,19 @@ for column in model_df.columns:
     plt.xlabel(column)
     plt.ylabel('EArray (KWh)')
 
+    plt.figure()
+    plt.scatter(model_df['Sheds Tilt'], model_df[column])
+    plt.title("Sheds Tilt vs " + column)
+    plt.xlabel("Sheds Tilt")
+    plt.ylabel(column)
+
+    plt.figure()
+    plt.scatter(model_df['Sheds Azim'], model_df[column])
+    plt.title("Sheds Azim vs " + column)
+    plt.xlabel("Sheds Azim")
+    plt.ylabel(column)
 plt.show()
+
 
 model_df = preprocess.process_model_data(numeric_data)
 #analyze variable importance
@@ -82,4 +96,3 @@ plt.ylabel('Feature')
 plt.title('Feature Importance')
 plt.gca().invert_yaxis()
 plt.show()
-
