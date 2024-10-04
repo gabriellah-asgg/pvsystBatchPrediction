@@ -1,3 +1,5 @@
+import pandas as pd
+from matplotlib import pyplot as plt
 from sklearn.svm import SVR
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
@@ -28,6 +30,7 @@ scaler = StandardScaler()
 y = model_df[target]
 X = model_df.drop([target], axis=1)
 X_scaled = scaler.fit_transform(X)
+
 pv_type = filepath.split('\\')[-1].replace(".xlsx", "")
 export_model(scaler, pv_type, False)
 
@@ -54,7 +57,7 @@ ridge_params_cv = {'solver': ('auto', 'svd', 'lsqr'),
                    'alpha': [1, 1.5, 5, 10, 20, 50]}
 
 lasso_params = {}
-lasso_params_cv = {'alpha': [0.01, 0.1, 0.5, 1, 1.5, 5, 10, 20, 50]}
+lasso_params_cv = {'alpha': [0.01, 0.1, 0.5, 1, 1.5, 5, 10, 20, 50, 100]}
 
 nn_params = {'random_state': rand, 'activation': 'relu', 'alpha': 10, 'hidden_layer_sizes': [18, 24, 18],
              'learning_rate': 'constant', 'learning_rate_init': 0.1, 'solver': 'adam'}
@@ -112,9 +115,10 @@ model_params[str(seq_nn_model.__class__.__name__)] = {"model": seq_nn_model, "pa
 for model in model_params.keys():
     curr_model = model_params.get(model).get("model")
     curr_param = model_params.get(model).get("param_grid")
-    skip_model = check_models_to_run(curr_model, curr_param, pv_type, filepath=json_filepath)
+    tuned = 'tuned' in model
+    skip_model = check_models_to_run(curr_model, curr_param, pv_type, tuned, filepath=json_filepath)
     if not skip_model:
-        if 'tuned' in model:
+        if tuned:
             train_model, rmse_score, si_score, model_names, rmse_list, si_list, best_params = tune_models(curr_model,
                                                                                                           curr_param,
                                                                                                           X_train,
@@ -128,6 +132,7 @@ for model in model_params.keys():
             score = "_" + str(round(rmse_score, 2))
             export = add_model_params(pv_type, curr_param, model, rmse_score, si_score, best_params,
                                       filepath=json_filepath)
+
             # only export tuned model if it is best tuned model
             if export:
                 export_model(train_model, pv_type, True, score)

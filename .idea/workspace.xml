@@ -4,20 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="added in models for different target variables">
-      <change afterPath="$PROJECT_DIR$/src/transformJSON.py" afterDir="false" />
+    <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="refactor json">
+      <change afterPath="$PROJECT_DIR$/src/multiTargetModel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/GIncLss/StandardScaler.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/earray_data/earray_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/earray_data/earray_cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/earrmpp_data/earrmpp_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/earrmpp_data/earrmpp_cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/earrnom_data/earrnom_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/earrnom_data/earrnom_cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/effarrr_data/effarrr_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/effarrr_data/effarrr_cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/effsysr_data/effsysr_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/effsysr_data/effsysr_cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/euseful_data/euseful_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/euseful_data/euseful_cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/ginclss_data/ginclss_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/ginclss_data/ginclss_cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/modqual_data/Lasso.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/modqual_data/Lasso.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/modqual_data/Sequential.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/modqual_data/Sequential.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/modqual_data/model_results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/res/modqual_data/model_results.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/modqual_data/modqual_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/modqual_data/modqual_cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/ohmloss_data/ohmloss_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/ohmloss_data/ohmloss_cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/templss_data/templss_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/templss_data/templss_cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ModQualModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ModQualModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jsonWriter.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsonWriter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelBuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelBuilder.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727880773924</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="refactor json">
+      <option name="closed" value="true" />
+      <created>1727906817280</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1727906817280</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -266,7 +270,8 @@
     <MESSAGE value="added in combined data" />
     <MESSAGE value="added in models for combined data" />
     <MESSAGE value="added in models for different target variables" />
-    <option name="LAST_COMMIT_MESSAGE" value="added in models for different target variables" />
+    <MESSAGE value="refactor json" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor json" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -4,37 +4,39 @@ from json import JSONDecodeError
 import pandas as pd
 
 
-def check_models_to_run(model, model_params, pv_type, filepath=r"../res/cache.json"):
+def check_models_to_run(model, model_params, pv_type, tuned, filepath=r"../res/cache.json"):
     model_found = False
     model_name = str(model.__class__.__name__)
+    if tuned:
+        model_name += "_tuned"
     file = open(filepath)
     try:
         pv_model_runs = json.load(file)
     except JSONDecodeError as e:
         pv_model_runs = {}
-    if not pv_model_runs.get('PV Panel Type'):
-        pv_model_runs['PV Panel Type'] = {}
-    if not pv_model_runs['PV Panel Type'].get(pv_type):
-        pv_model_runs['PV Panel Type'][pv_type] = {
+    if not pv_model_runs.get('Dataset Type'):
+        pv_model_runs['Dataset Type'] = {}
+    if not pv_model_runs['Dataset Type'].get(pv_type):
+        pv_model_runs['Dataset Type'][pv_type] = {
             "Best Model": "",
             "Best Model Score": None,
             "Best Model SI": None,
             "Models": {
             }
         }
-    if not pv_model_runs["PV Panel Type"][pv_type]["Models"].get(model_name):
+    if not pv_model_runs["Dataset Type"][pv_type]["Models"].get(model_name):
         # add the model name and param_variation dictionary
-        pv_model_runs["PV Panel Type"][pv_type]["Models"][model_name] = {"best_tuned_params": {},
-                                                                         "best_tuned_rmse": None, "best_tuned_si": None,
+        pv_model_runs["Dataset Type"][pv_type]["Models"][model_name] = {"best_params": {},
+                                                                         "best_rmse": None, "best_si": None,
                                                                          "param_variations": []}
-    for param_var in pv_model_runs["PV Panel Type"][pv_type]["Models"][model_name]["param_variations"]:
+    for param_var in pv_model_runs["Dataset Type"][pv_type]["Models"][model_name]["param_variations"]:
         param_to_check = param_var.get("params")
         model_found = params_equal(model_params, param_to_check)
         if model_found:
             break
-
-    with open(filepath, 'w') as f:
-        json.dump(pv_model_runs, f, indent=4)
+    if not model_found:
+        with open(filepath, 'w') as f:
+            json.dump(pv_model_runs, f, indent=4)
     return model_found
 
 
@@ -60,27 +62,26 @@ def params_equal(input_params, params):
 def add_model_params(pv_type, params, model, rmse, si, best_params=None, filepath=r"../res/cache.json"):
     export = True
     file = open(filepath)
-    model_name = model.replace("_tuned", "")
     pv_model_runs = json.load(file)
-    pv_model_runs["PV Panel Type"][pv_type]["Models"][model_name]["param_variations"].append(
+    pv_model_runs["Dataset Type"][pv_type]["Models"][model]["param_variations"].append(
         {"params": params, "RMSE": rmse, "SI": si})
-    improved_tuned_rmse = pv_model_runs["PV Panel Type"][pv_type]["Models"][model_name].get(
-        "best_tuned_rmse") is None or pv_model_runs["PV Panel Type"][pv_type]["Models"][model_name].get(
-        "best_tuned_rmse") > rmse
-    if best_params is not None and improved_tuned_rmse:
-        pv_model_runs["PV Panel Type"][pv_type]["Models"][model_name]["best_tuned_rmse"] = rmse
-        pv_model_runs["PV Panel Type"][pv_type]["Models"][model_name]["best_tuned_si"] = si
-        pv_model_runs["PV Panel Type"][pv_type]["Models"][model_name]["best_tuned_params"] = best_params
+    improved_rmse = pv_model_runs["Dataset Type"][pv_type]["Models"][model]["best_rmse"] is None or pv_model_runs["Dataset Type"][pv_type]["Models"][model]["best_rmse"] < rmse
+    if improved_rmse:
+        pv_model_runs["Dataset Type"][pv_type]["Models"][model]["best_rmse"] = rmse
+        pv_model_runs["Dataset Type"][pv_type]["Models"][model]["best_si"] = si
+        if best_params is None:
+            best_params = {}
+        pv_model_runs["Dataset Type"][pv_type]["Models"][model]["best_params"] = best_params
     # check if model is improved tuning (should be exported)
     else:
-        if best_params is not None and not improved_tuned_rmse:
+        if not improved_rmse:
             export = False
 
-    if pv_model_runs["PV Panel Type"][pv_type].get("Best Model Score") is None or pv_model_runs["PV Panel Type"][
-        pv_type].get("Best Model Score") > rmse:
-        pv_model_runs["PV Panel Type"][pv_type]["Best Model"] = model
-        pv_model_runs["PV Panel Type"][pv_type]["Best Model Score"] = rmse
-        pv_model_runs["PV Panel Type"][pv_type]["Best Model SI"] = si
+    if pv_model_runs["Dataset Type"][pv_type].get("Best Model Score") is None or pv_model_runs["Dataset Type"][
+        pv_type].get("Best Model Score") < rmse:
+        pv_model_runs["Dataset Type"][pv_type]["Best Model"] = model
+        pv_model_runs["Dataset Type"][pv_type]["Best Model Score"] = rmse
+        pv_model_runs["Dataset Type"][pv_type]["Best Model SI"] = si
     with open(filepath, 'w') as f:
         json.dump(pv_model_runs, f, indent=4)
     return export
@@ -93,11 +94,11 @@ def export_to_csv(pv_type, filepath=r"../res/cache.json"):
     model_names = []
     rmse_list = []
     si_list = []
-    for model in pv_model_runs["PV Panel Type"][pv_type]["Models"]:
+    for model in pv_model_runs["Dataset Type"][pv_type]["Models"]:
         model_names.append((model + "_tuned"))
-        model_dict = pv_model_runs["PV Panel Type"][pv_type]["Models"][model]
-        rmse_list.append(model_dict["best_tuned_rmse"])
-        si_list.append(model_dict["best_tuned_si"])
+        model_dict = pv_model_runs["Dataset Type"][pv_type]["Models"][model]
+        rmse_list.append(model_dict["best_rmse"])
+        si_list.append(model_dict["best_si"])
         for i in range(0, len(model_dict["param_variations"])):
             check_params = model_dict["param_variations"][i]
             if check_params == {}:
