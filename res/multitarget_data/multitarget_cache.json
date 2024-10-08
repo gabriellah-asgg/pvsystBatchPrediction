@@ -5,12 +5,6 @@
             "Best Model Score": 1.8251498517900777,
             "Best Model SI": 0.04518173518837489,
             "Models": {
-                "SVR": {
-                    "best_params": {},
-                    "best_rmse": null,
-                    "best_si": null,
-                    "param_variations": []
-                },
                 "DecisionTreeRegressor": {
                     "best_params": {},
                     "best_rmse": 0.19467590675026253,

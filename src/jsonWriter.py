@@ -78,7 +78,7 @@ def add_model_params(pv_type, params, model, rmse, si, best_params=None, filepat
             export = False
 
     if pv_model_runs["Dataset Type"][pv_type].get("Best Model Score") is None or pv_model_runs["Dataset Type"][
-        pv_type].get("Best Model Score") < rmse:
+        pv_type].get("Best Model Score") > rmse:
         pv_model_runs["Dataset Type"][pv_type]["Best Model"] = model
         pv_model_runs["Dataset Type"][pv_type]["Best Model Score"] = rmse
         pv_model_runs["Dataset Type"][pv_type]["Best Model SI"] = si

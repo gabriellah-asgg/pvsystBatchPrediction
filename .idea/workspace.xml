@@ -4,33 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="abstracted model building more, created a class">
-      <change afterPath="$PROJECT_DIR$/res/multitarget_data/multitarget_cache.json" afterDir="false" />
+    <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="added in multi target model, refactored code to work with modelBuilder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/earray_data/Sequential.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/earray_data/Sequential.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/earray_data/StandardScaler.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/earray_data/StandardScaler.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/earray_data/earray_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/earray_data/earray_cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/earrnom_data/Sequential.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/earrnom_data/Sequential.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/earrnom_data/StandardScaler.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/earrnom_data/StandardScaler.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/earrnom_data/earrnom_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/earrnom_data/earrnom_cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/effsysr_data/Sequential.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/effsysr_data/Sequential.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/effsysr_data/StandardScaler.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/effsysr_data/StandardScaler.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/effsysr_data/effsysr_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/effsysr_data/effsysr_cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EArrMPPModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/EArrMPPModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EArrNomModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/EArrNomModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EArrayModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/EArrayModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EUsefulModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/EUsefulModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EffArrRModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/EffArrRModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EffSysRModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/EffSysRModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GIncLssModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GIncLssModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ModQualModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ModQualModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OhmLossModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/OhmLossModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TempLssModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/TempLssModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/buildOpaqueModelCombinedData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/buildOpaqueModelCombinedData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/deSecondBatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/deSecondBatch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelBuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelBuilder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/multiTargetModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/multiTargetModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/preprocessData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/preprocessData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/multitarget_data/multitarget_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/multitarget_data/multitarget_cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jsonWriter.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsonWriter.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -269,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728076132655</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="added in multi target model, refactored code to work with modelBuilder">
+      <option name="closed" value="true" />
+      <created>1728397154566</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1728397154566</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -299,7 +284,8 @@
     <MESSAGE value="added in models for different target variables" />
     <MESSAGE value="refactor json" />
     <MESSAGE value="abstracted model building more, created a class" />
-    <option name="LAST_COMMIT_MESSAGE" value="abstracted model building more, created a class" />
+    <MESSAGE value="added in multi target model, refactored code to work with modelBuilder" />
+    <option name="LAST_COMMIT_MESSAGE" value="added in multi target model, refactored code to work with modelBuilder" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
