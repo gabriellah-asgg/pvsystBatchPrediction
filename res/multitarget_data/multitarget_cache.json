@@ -1,0 +1,154 @@
+{
+    "Dataset Type": {
+        "multitarget_data": {
+            "Best Model": "MLPRegressor",
+            "Best Model Score": 1.8251498517900777,
+            "Best Model SI": 0.04518173518837489,
+            "Models": {
+                "SVR": {
+                    "best_params": {},
+                    "best_rmse": null,
+                    "best_si": null,
+                    "param_variations": []
+                },
+                "DecisionTreeRegressor": {
+                    "best_params": {},
+                    "best_rmse": 0.19467590675026253,
+                    "best_si": 0.004820086334055405,
+                    "param_variations": [
+                        {
+                            "params": {
+                                "random_state": 42
+                            },
+                            "RMSE": 0.19467590675026253,
+                            "SI": 0.004820086334055405
+                        }
+                    ]
+                },
+                "DecisionTreeRegressor_tuned": {
+                    "best_params": {
+                        "max_depth": 50,
+                        "min_samples_leaf": 1,
+                        "min_samples_split": 3,
+                        "random_state": 42
+                    },
+                    "best_rmse": 0.1931215312212497,
+                    "best_si": 0.004781607122503956,
+                    "param_variations": [
+                        {
+                            "params": {
+                                "random_state": [
+                                    42
+                                ],
+                                "max_depth": [
+                                    5,
+                                    10,
+                                    15,
+                                    20,
+                                    50
+                                ],
+                                "min_samples_split": [
+                                    2,
+                                    3,
+                                    4,
+                                    5,
+                                    8
+                                ],
+                                "min_samples_leaf": [
+                                    1,
+                                    2,
+                                    3
+                                ]
+                            },
+                            "RMSE": 0.1931215312212497,
+                            "SI": 0.004781607122503956
+                        }
+                    ]
+                },
+                "MLPRegressor": {
+                    "best_params": {},
+                    "best_rmse": 1.8251498517900777,
+                    "best_si": 0.04518173518837489,
+                    "param_variations": [
+                        {
+                            "params": {
+                                "random_state": 42,
+                                "activation": "relu",
+                                "alpha": 10,
+                                "hidden_layer_sizes": [
+                                    18,
+                                    24,
+                                    18
+                                ],
+                                "learning_rate": "constant",
+                                "learning_rate_init": 0.1,
+                                "solver": "adam"
+                            },
+                            "RMSE": 1.8251498517900777,
+                            "SI": 0.04518173518837489
+                        }
+                    ]
+                },
+                "MLPRegressor_tuned": {
+                    "best_params": {
+                        "alpha": 0.0001,
+                        "batch_size": 64,
+                        "early_stopping": true,
+                        "hidden_layer_sizes": [
+                            128,
+                            256,
+                            128
+                        ],
+                        "learning_rate_init": 0.0001,
+                        "random_state": 42,
+                        "shuffle": false
+                    },
+                    "best_rmse": 0.32831477711366475,
+                    "best_si": 0.008128162049572906,
+                    "param_variations": [
+                        {
+                            "params": {
+                                "random_state": [
+                                    42
+                                ],
+                                "batch_size": [
+                                    64,
+                                    200
+                                ],
+                                "shuffle": [
+                                    true,
+                                    false
+                                ],
+                                "early_stopping": [
+                                    true
+                                ],
+                                "alpha": [
+                                    0.0001,
+                                    10
+                                ],
+                                "learning_rate_init": [
+                                    0.0001,
+                                    0.1
+                                ],
+                                "hidden_layer_sizes": [
+                                    [
+                                        18,
+                                        24,
+                                        18
+                                    ],
+                                    [
+                                        128,
+                                        256,
+                                        128
+                                    ]
+                                ]
+                            },
+                            "RMSE": 0.32831477711366475,
+                            "SI": 0.008128162049572906
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

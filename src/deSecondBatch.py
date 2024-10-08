@@ -1,8 +1,10 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from sklearn import tree
 
 import predictionGenerator
 from sklearn.ensemble import RandomForestRegressor
@@ -43,7 +45,7 @@ for column in numeric_data.columns:
 
 plt.show()
 
-model_df = numeric_data.drop(['Syst_ON', 'MisLoss', 'EffArrC', 'EffSysC'], axis=1)
+model_df = numeric_data.drop(['Syst_ON', 'MisLoss', 'EffArrC'], axis=1)
 
 # scatterplot
 for column in model_df.columns:
@@ -66,7 +68,6 @@ for column in model_df.columns:
     plt.ylabel(column)
 plt.show()
 
-
 model_df = preprocess.process_model_data(numeric_data)
 #analyze variable importance
 
@@ -80,9 +81,9 @@ X_scaled = scaler.fit_transform(X)
 X_train, X_test, y_train, y_test = train_test_split(
     X_scaled, y, test_size=0.30, random_state=42)
 
-tree = RandomForestRegressor()
-tree.fit(X_scaled, y)
-importances = tree.feature_importances_
+rftree = RandomForestRegressor()
+rftree.fit(X_scaled, y)
+importances = rftree.feature_importances_
 feature_importance_df = pd.DataFrame({
     'Feature': X.columns,
     'Importance': importances
@@ -95,4 +96,9 @@ plt.xlabel('Importance')
 plt.ylabel('Feature')
 plt.title('Feature Importance')
 plt.gca().invert_yaxis()
+plt.show()
+
+tree_model = pickle.load(open(r'../res/multitarget_data/DecisionTreeRegressor.pkl', 'rb'))
+plt.figure()
+tree.plot_tree(tree_model)
 plt.show()

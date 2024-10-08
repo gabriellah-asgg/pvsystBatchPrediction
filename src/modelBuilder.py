@@ -8,15 +8,11 @@ from sklearn.metrics import root_mean_squared_error
 import pickle
 import os
 from jsonWriter import *
-import tensorflow as tf
-
-from tensorflow import keras
-from tensorflow.keras import layers
 import warnings
 
 
 class ModelBuilder:
-    def __init__(self, source_data_fp, target, columns=None, sheet_name=0):
+    def __init__(self, source_data_fp, target, columns=None, sheet_name=0, input = ['Sheds Tilt', 'Sheds Azim']):
         self.rand = 42
         self.target = target
         self.source_data_fp = source_data_fp
@@ -30,7 +26,7 @@ class ModelBuilder:
 
         # split data into sets
         self.y = self.df[self.target]
-        self.X = self.df.drop([self.target], axis=1)
+        self.X = self.df[input]
         self.X_scaled = self.scaler.fit_transform(self.X)
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
             self.X_scaled, self.y, test_size=0.30, random_state=self.rand)
@@ -200,7 +196,7 @@ class ModelBuilder:
                         add_model_params(pv_type, curr_param, model, rmse_score, si_score, filepath=json_filepath)
 
                     self.export_model(train_model,False)
-        export_to_csv(pv_type, filepath=json_filepath)
+        #export_to_csv(pv_type, filepath=json_filepath)
 
 
 def calc_scatter_index(rmse, y_preds, model):

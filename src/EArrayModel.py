@@ -1,11 +1,8 @@
 from sklearn.svm import SVR
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
 
 from sklearn.linear_model import Ridge
 from sklearn import linear_model
 from sklearn.neural_network import MLPRegressor
-from jsonWriter import *
 from modelBuilder import *
 import tensorflow as tf
 
@@ -21,24 +18,9 @@ target = "EArray (KWh)"
 
 # construct dataframe for model building
 filepath = r'Q:\Projects\224008\DESIGN\ANALYSIS\00_PV\PVsyst Batch Simulation\earray_data.xlsx'
-model_df = construct_df(filepath, columns=["Sheds Tilt", "Sheds Azim", target])
+model_builder = ModelBuilder(filepath, target,
+                             columns=["Sheds Tilt", "Sheds Azim", target])
 
-# standardize data
-scaler = StandardScaler()
-y = model_df[target]
-X = model_df.drop([target], axis=1)
-X_scaled = scaler.fit_transform(X)
-pv_type = filepath.split('\\')[-1].replace(".xlsx", "")
-export_model(scaler, pv_type, False)
-
-# split for train and test
-X_train, X_test, y_train, y_test = train_test_split(
-    X_scaled, y, test_size=0.30, random_state=rand)
-
-# create data structures to capture model results
-model_names = []
-rmse_list = []
-si_list = []
 
 # build models
 model_params = {}
@@ -108,68 +90,5 @@ model_params[str(seq_nn_model.__class__.__name__)] = {"model": seq_nn_model, "pa
                                                       "fit_params": {'validation_split': 0.2, 'verbose': 2,
                                                                      'epochs': 100, 'callbacks': [callback]}}
 
-# run models that haven't previously been run
-for model in model_params.keys():
-    curr_model = model_params.get(model).get("model")
-    curr_param = model_params.get(model).get("param_grid")
-    skip_model = check_models_to_run(curr_model, curr_param, pv_type, filepath=json_filepath)
-    if not skip_model:
-        if 'tuned' in model:
-            train_model, rmse_score, si_score, model_names, rmse_list, si_list, best_params = tune_models(curr_model,
-                                                                                                          curr_param,
-                                                                                                          X_train,
-                                                                                                          y_train,
-                                                                                                          X_test,
-                                                                                                          y_test,
-                                                                                                          model_names,
-                                                                                                          rmse_list,
-                                                                                                          si_list,
-                                                                                                          verbose=5)
-            score = "_" + str(round(rmse_score, 2))
-            export = add_model_params(pv_type, curr_param, model, rmse_score, si_score, best_params,
-                                      filepath=json_filepath)
-            # only export tuned model if it is best tuned model
-            if export:
-                export_model(train_model, pv_type, True, score)
 
-        else:
-            if model_params.get(model).get("fit_params"):
-                compile_params = model_params.get(model).get("compile_params")
-                fit_params = model_params.get(model).get("fit_params")
-                train_model, rmse_score, si_score, model_names, rmse_list, si_list = build_tf_models(curr_model,
-                                                                                                     X_train,
-                                                                                                     y_train,
-                                                                                                     X_test, y_test,
-                                                                                                     model_names,
-                                                                                                     rmse_list, si_list,
-                                                                                                     compile_params,
-                                                                                                     fit_params)
-                callback_params = model_params.get(model).get("fit_params").get("callbacks")[0]
-                fit_params['callbacks'] = {'monitor': callback_params.monitor,
-                                           'patience': callback_params.patience}
-                score = "_" + str(round(rmse_score, 2))
-                layer_configs = []
-                for layer in seq_nn_params:
-                    layer_config = layer.get_config()
-                    configs = {'units': layer_config['units'], 'activation': layer_config['activation']}
-                    layer_configs.append(configs)
-                all_params = {"layers": layer_configs}
-                serial_compile_params = {'loss': compile_params.get('loss'),
-                                         'optimizer': [compile_params.get('optimizer').get_config()['name'],
-                                                       compile_params.get('optimizer').get_config()['learning_rate'],
-                                                       compile_params.get('optimizer').get_config()['epsilon']]}
-                all_params.update(serial_compile_params)
-                all_params.update(fit_params)
-                add_model_params(pv_type, all_params, model, rmse_score, si_score, filepath=json_filepath)
-
-            else:
-                train_model, rmse_score, si_score, model_names, rmse_list, si_list = build_models(curr_model, X_train,
-                                                                                                  y_train,
-                                                                                                  X_test, y_test,
-                                                                                                  model_names,
-                                                                                                  rmse_list, si_list)
-                score = "_" + str(round(rmse_score, 2))
-                add_model_params(pv_type, curr_param, model, rmse_score, si_score, filepath=json_filepath)
-
-            export_model(train_model, pv_type, False, score)
-export_to_csv(pv_type, filepath=json_filepath)
+model_builder.run_model_builder(model_params, "earray_data", json_filepath)

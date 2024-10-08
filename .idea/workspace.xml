@@ -4,16 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="refactor json">
-      <change afterPath="$PROJECT_DIR$/src/multiTargetModel.py" afterDir="false" />
+    <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="abstracted model building more, created a class">
+      <change afterPath="$PROJECT_DIR$/res/multitarget_data/multitarget_cache.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/modqual_data/Lasso.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/modqual_data/Lasso.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/modqual_data/Sequential.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/modqual_data/Sequential.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/modqual_data/model_results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/res/modqual_data/model_results.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/modqual_data/modqual_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/modqual_data/modqual_cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/earray_data/Sequential.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/earray_data/Sequential.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/earray_data/StandardScaler.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/earray_data/StandardScaler.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/earray_data/earray_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/earray_data/earray_cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/earrnom_data/Sequential.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/earrnom_data/Sequential.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/earrnom_data/StandardScaler.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/earrnom_data/StandardScaler.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/earrnom_data/earrnom_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/earrnom_data/earrnom_cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/effsysr_data/Sequential.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/effsysr_data/Sequential.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/effsysr_data/StandardScaler.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/effsysr_data/StandardScaler.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/effsysr_data/effsysr_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/effsysr_data/effsysr_cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EArrMPPModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/EArrMPPModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EArrNomModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/EArrNomModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EArrayModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/EArrayModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EUsefulModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/EUsefulModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EffArrRModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/EffArrRModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EffSysRModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/EffSysRModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GIncLssModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GIncLssModel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ModQualModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ModQualModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jsonWriter.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsonWriter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OhmLossModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/OhmLossModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TempLssModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/TempLssModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/buildOpaqueModelCombinedData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/buildOpaqueModelCombinedData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/deSecondBatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/deSecondBatch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modelBuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelBuilder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/multiTargetModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/multiTargetModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/preprocessData.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/preprocessData.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +93,7 @@
     "Python.makePredictions.executor": "Run",
     "Python.makeSemiOpaquePredictions.executor": "Debug",
     "Python.modelBuilder.executor": "Debug",
+    "Python.multiTargetModel.executor": "Run",
     "Python.opaquePanels.executor": "Debug",
     "Python.predictionGenerator.executor": "Debug",
     "Python.preprocessData.executor": "Debug",
@@ -86,7 +104,7 @@
     "Python.transformJSON.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/gabriellahoover/PycharmProjects/pvsystBatchPrediction/res/EArrNom"
+    "last_opened_file_path": "C:/Users/gabriellahoover/My Documents"
   },
   "keyToStringList": {
     "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
@@ -96,14 +114,15 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gabriellahoover\My Documents" />
       <recent name="C:\Users\gabriellahoover\PycharmProjects\pvsystBatchPrediction\res\EArrNom" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gabriellahoover\PycharmProjects\pvsystBatchPrediction\res\multitarget_data" />
       <recent name="C:\Users\gabriellahoover\PycharmProjects\pvsystBatchPrediction\res\earrmpp_data" />
       <recent name="C:\Users\gabriellahoover\PycharmProjects\pvsystBatchPrediction\res\earray_data" />
       <recent name="C:\Users\gabriellahoover\PycharmProjects\pvsystBatchPrediction\res\earrnom_data" />
       <recent name="C:\Users\gabriellahoover\PycharmProjects\pvsystBatchPrediction\src" />
-      <recent name="C:\Users\gabriellahoover\PycharmProjects\pvsystBatchPrediction\src\featureSet2" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -242,7 +261,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727906817280</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="abstracted model building more, created a class">
+      <option name="closed" value="true" />
+      <created>1728076132655</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1728076132655</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -271,7 +298,8 @@
     <MESSAGE value="added in models for combined data" />
     <MESSAGE value="added in models for different target variables" />
     <MESSAGE value="refactor json" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor json" />
+    <MESSAGE value="abstracted model building more, created a class" />
+    <option name="LAST_COMMIT_MESSAGE" value="abstracted model building more, created a class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -288,7 +316,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/buildOpaqueModelCombinedData.py</url>
-          <line>155</line>
+          <line>96</line>
           <option name="timeStamp" value="131" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -310,6 +338,11 @@
           <url>file://$PROJECT_DIR$/src/transformJSON.py</url>
           <line>31</line>
           <option name="timeStamp" value="153" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/multiTargetModel.py</url>
+          <line>84</line>
+          <option name="timeStamp" value="166" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

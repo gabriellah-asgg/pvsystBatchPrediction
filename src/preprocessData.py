@@ -40,6 +40,7 @@ class Preprocessor:
                        "Error", "EArray (KWh)"]
         display_df = pd.read_excel(self.filepath, skiprows=skip_rows, names=names, index_col=index_col,
                                    sheet_name=sheet)
+        display_df = display_df.dropna(axis=1, how="all")
         col_dict = {}
         for i, col in enumerate(display_df.columns):
             col_dict[col] = columns[i]

@@ -1,9 +1,9 @@
 {
     "Dataset Type": {
         "earray_data": {
-            "Best Model": "SVR",
-            "Best Model Score": 0.21610270924664074,
-            "Best Model SI": 0.022852009219959758,
+            "Best Model": "Sequential",
+            "Best Model Score": 1.2635744049825601,
+            "Best Model SI": 0.13368785685476126,
             "Models": {
                 "SVR": {
                     "best_params": {},
@@ -261,6 +261,47 @@
                     "best_rmse": 1.2635744049825601,
                     "best_si": 0.13368785685476126,
                     "param_variations": [
+                        {
+                            "params": {
+                                "layers": [
+                                    {
+                                        "units": 32,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 64,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 64,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 32,
+                                        "activation": "relu"
+                                    },
+                                    {
+                                        "units": 1,
+                                        "activation": "linear"
+                                    }
+                                ],
+                                "loss": "mean_absolute_error",
+                                "optimizer": [
+                                    "adam",
+                                    9.999999747378752e-05,
+                                    1e-07
+                                ],
+                                "validation_split": 0.2,
+                                "verbose": 2,
+                                "epochs": 100,
+                                "callbacks": {
+                                    "monitor": "val_loss",
+                                    "patience": 4
+                                }
+                            },
+                            "RMSE": 1.2635744049825601,
+                            "SI": 0.13368785685476126
+                        },
                         {
                             "params": {
                                 "layers": [
