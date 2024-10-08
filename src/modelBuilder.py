@@ -16,6 +16,7 @@ class ModelBuilder:
     def __init__(self, source_data_fp, target, columns=None, sheet_name=0, features=None, pv_type=None):
         if features is None:
             features = ['Sheds Tilt', 'Sheds Azim']
+        self.pv_type = pv_type
         if pv_type is None:
             self.pv_type = source_data_fp.split('\\')[-1].replace(".xlsx", "")
 
