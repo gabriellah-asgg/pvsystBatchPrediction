@@ -17,12 +17,13 @@ target = ['EArrNom (kWh)', 'GIncLss (kWh)', 'TempLss (kWh)', 'ModQual (kWh)', 'O
           'EArray (kWh)', 'EUseful (kWh)', 'EffSysR %', 'EffArrR %']
 
 # construct dataframe for model building
-filepath = r'Q:\Projects\224008\DESIGN\ANALYSIS\00_PV\PVsyst Batch Simulation\MOD_Canopy_Batch_Simulation_Project_BatchResults_0.xlsx'
+filepath = (r'Q:\Projects\224008\DESIGN\ANALYSIS\00_PV\PVsyst Batch '
+            r'Simulation\MOD_Canopy_Batch_Simulation_Project_BatchResults_0.xlsx')
 model_builder = ModelBuilder(filepath, target,
                              columns=['Indent', 'Sheds Tilt', 'Sheds Azim', 'Comment', 'Syst_ON', 'EArrNom (kWh)',
                                       'GIncLss (kWh)', 'TempLss (kWh)', 'ModQual (kWh)', 'MisLoss (kWh)',
                                       'OhmLoss (kWh)', 'EArrMpp (kWh)', 'EArray (kWh)', 'EUseful (kWh)', 'EffSysR %',
-                                      'EffArrR %', 'EffArrC %', 'EffSysC %'])
+                                      'EffArrR %', 'EffArrC %', 'EffSysC %'], pv_type="multitarget_data")
 
 # build models
 model_params = {}
@@ -82,4 +83,4 @@ model_params[str(seq_nn_model.__class__.__name__)] = {"model": seq_nn_model, "pa
                                                       "fit_params": {'validation_split': 0.2, 'verbose': 2,
                                                                      'epochs': 100, 'callbacks': [callback]}}
 
-model_builder.run_model_builder(model_params, "multitarget_data", json_filepath)
+model_builder.run_model_builder(model_params, json_filepath)

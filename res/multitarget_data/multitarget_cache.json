@@ -1,9 +1,9 @@
 {
     "Dataset Type": {
         "multitarget_data": {
-            "Best Model": "MLPRegressor",
-            "Best Model Score": 1.8251498517900777,
-            "Best Model SI": 0.04518173518837489,
+            "Best Model": "DecisionTreeRegressor_tuned",
+            "Best Model Score": 0.1931215312212497,
+            "Best Model SI": 0.004781607122503956,
             "Models": {
                 "DecisionTreeRegressor": {
                     "best_params": {},

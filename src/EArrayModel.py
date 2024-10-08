@@ -91,4 +91,4 @@ model_params[str(seq_nn_model.__class__.__name__)] = {"model": seq_nn_model, "pa
                                                                      'epochs': 100, 'callbacks': [callback]}}
 
 
-model_builder.run_model_builder(model_params, "earray_data", json_filepath)
+model_builder.run_model_builder(model_params, json_filepath)

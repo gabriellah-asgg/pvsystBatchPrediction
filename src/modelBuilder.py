@@ -8,25 +8,31 @@ from sklearn.metrics import root_mean_squared_error
 import pickle
 import os
 from jsonWriter import *
+
 import warnings
 
 
 class ModelBuilder:
-    def __init__(self, source_data_fp, target, columns=None, sheet_name=0, input = ['Sheds Tilt', 'Sheds Azim']):
+    def __init__(self, source_data_fp, target, columns=None, sheet_name=0, features=None, pv_type=None):
+        if features is None:
+            features = ['Sheds Tilt', 'Sheds Azim']
+        if pv_type is None:
+            self.pv_type = source_data_fp.split('\\')[-1].replace(".xlsx", "")
+
         self.rand = 42
         self.target = target
         self.source_data_fp = source_data_fp
+
         # preprocess data so it is ready to run models on
         self.df = self.construct_df(columns=columns, sheet_name=sheet_name)
+
         # standardize data
         self.scaler = StandardScaler()
-
-        self.pv_type = source_data_fp.split('\\')[-1].replace(".xlsx", "")
         self.export_model(self.scaler, False)
 
         # split data into sets
         self.y = self.df[self.target]
-        self.X = self.df[input]
+        self.X = self.df[features]
         self.X_scaled = self.scaler.fit_transform(self.X)
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
             self.X_scaled, self.y, test_size=0.30, random_state=self.rand)
@@ -148,13 +154,13 @@ class ModelBuilder:
 
         return hypertuned_model, rmse_tuned, si_tuned, gridsearch.best_params_
 
-    def run_model_builder(self,model_params, pv_type, json_filepath):
+    def run_model_builder(self,model_params,json_filepath):
         # run models that haven't previously been run
         for model in model_params.keys():
             curr_model = model_params.get(model).get("model")
             curr_param = model_params.get(model).get("param_grid")
             tuned = 'tuned' in model
-            skip_model = check_models_to_run(curr_model, curr_param, pv_type, tuned, filepath=json_filepath)
+            skip_model = check_models_to_run(curr_model, curr_param, self.pv_type, tuned, filepath=json_filepath)
             if not skip_model:
                 if tuned:
                     train_model, rmse_score, si_score, best_params = self.tune_models(curr_model,curr_param,verbose=5)
@@ -188,12 +194,12 @@ class ModelBuilder:
                                                                compile_params.get('optimizer').get_config()['epsilon']]}
                         all_params.update(serial_compile_params)
                         all_params.update(fit_params)
-                        add_model_params(pv_type, all_params, model, rmse_score, si_score, filepath=json_filepath)
+                        add_model_params(self.pv_type, all_params, model, rmse_score, si_score, filepath=json_filepath)
 
                     else:
                         train_model, rmse_score, si_score = self.build_models(curr_model,)
                         score = "_" + str(round(rmse_score, 2))
-                        add_model_params(pv_type, curr_param, model, rmse_score, si_score, filepath=json_filepath)
+                        add_model_params(self.pv_type, curr_param, model, rmse_score, si_score, filepath=json_filepath)
 
                     self.export_model(train_model,False)
         #export_to_csv(pv_type, filepath=json_filepath)
