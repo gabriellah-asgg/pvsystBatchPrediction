@@ -1,9 +1,9 @@
 {
     "Dataset Type": {
         "multitarget_data": {
-            "Best Model": "DecisionTreeRegressor_tuned",
-            "Best Model Score": 0.1931215312212497,
-            "Best Model SI": 0.004781607122503956,
+            "Best Model": "MultiOutputRegressor_tuned",
+            "Best Model Score": 0.10874188069431168,
+            "Best Model SI": 0.0026924041074325934,
             "Models": {
                 "DecisionTreeRegressor": {
                     "best_params": {},
@@ -40,6 +40,35 @@
                                     15,
                                     20,
                                     50
+                                ],
+                                "min_samples_split": [
+                                    2,
+                                    3,
+                                    4,
+                                    5,
+                                    8
+                                ],
+                                "min_samples_leaf": [
+                                    1,
+                                    2,
+                                    3
+                                ]
+                            },
+                            "RMSE": 0.1931215312212497,
+                            "SI": 0.004781607122503956
+                        },
+                        {
+                            "params": {
+                                "random_state": [
+                                    42
+                                ],
+                                "max_depth": [
+                                    5,
+                                    10,
+                                    15,
+                                    20,
+                                    50,
+                                    null
                                 ],
                                 "min_samples_split": [
                                     2,
@@ -139,6 +168,323 @@
                             },
                             "RMSE": 0.32831477711366475,
                             "SI": 0.008128162049572906
+                        }
+                    ]
+                },
+                "MultiOutputRegressor": {
+                    "best_params": {},
+                    "best_rmse": 0.14666942437914746,
+                    "best_si": 0.0036314897327643686,
+                    "param_variations": [
+                        {
+                            "params": {},
+                            "RMSE": 0.14666942437914746,
+                            "SI": 0.0036314897327643686
+                        }
+                    ]
+                },
+                "MultiOutputRegressor_tuned": {
+                    "best_params": {
+                        "estimator__C": 1,
+                        "estimator__epsilon": 0.001,
+                        "estimator__kernel": "rbf"
+                    },
+                    "best_rmse": 0.10874188069431168,
+                    "best_si": 0.0026924041074325934,
+                    "param_variations": [
+                        {
+                            "params": {
+                                "estimator__kernel": [
+                                    "rbf"
+                                ],
+                                "estimator__C": [
+                                    0.1,
+                                    1
+                                ],
+                                "estimator__epsilon": [
+                                    0.1,
+                                    0.2,
+                                    0.5
+                                ]
+                            },
+                            "RMSE": 0.14666942437914746,
+                            "SI": 0.0036314897327643686
+                        },
+                        {
+                            "params": {
+                                "estimator__kernel": [
+                                    "rbf"
+                                ],
+                                "estimator__C": [
+                                    0.1,
+                                    1
+                                ],
+                                "estimator__epsilon": [
+                                    0.001,
+                                    0.01,
+                                    0.1
+                                ]
+                            },
+                            "RMSE": 0.10874188069431168,
+                            "SI": 0.0026924041074325934
+                        }
+                    ]
+                },
+                "Sequential": {
+                    "best_params": {
+                        "layers": [
+                            {
+                                "name": "dense",
+                                "units": 32,
+                                "activation": "relu",
+                                "kernel_regularization": null,
+                                "rate": null
+                            },
+                            {
+                                "name": "dense_1",
+                                "units": 64,
+                                "activation": "relu",
+                                "kernel_regularization": null,
+                                "rate": null
+                            },
+                            {
+                                "name": "dense_2",
+                                "units": 64,
+                                "activation": "relu",
+                                "kernel_regularization": null,
+                                "rate": null
+                            },
+                            {
+                                "name": "dropout",
+                                "units": null,
+                                "activation": null,
+                                "kernel_regularization": null,
+                                "rate": 0.1
+                            },
+                            {
+                                "name": "dense_3",
+                                "units": 32,
+                                "activation": "relu",
+                                "kernel_regularization": null,
+                                "rate": null
+                            },
+                            {
+                                "name": "dense_4",
+                                "units": 10,
+                                "activation": "linear",
+                                "kernel_regularization": null,
+                                "rate": null
+                            }
+                        ],
+                        "loss": "mean_absolute_error",
+                        "optimizer": [
+                            "adam",
+                            9.999999747378752e-05,
+                            1e-07
+                        ],
+                        "validation_split": 0.2,
+                        "verbose": 2,
+                        "epochs": 100,
+                        "callbacks": {
+                            "monitor": "val_loss",
+                            "patience": 4
+                        },
+                        "batch_size": 16
+                    },
+                    "best_rmse": 3.6632680733789713,
+                    "best_si": 0.09140052000082022,
+                    "param_variations": [
+                        {
+                            "params": {
+                                "layers": [
+                                    {
+                                        "name": "dense",
+                                        "units": 32,
+                                        "activation": "relu",
+                                        "kernel_regularization": null,
+                                        "rate": null
+                                    },
+                                    {
+                                        "name": "dense_1",
+                                        "units": 64,
+                                        "activation": "relu",
+                                        "kernel_regularization": null,
+                                        "rate": null
+                                    },
+                                    {
+                                        "name": "dense_2",
+                                        "units": 64,
+                                        "activation": "relu",
+                                        "kernel_regularization": null,
+                                        "rate": null
+                                    },
+                                    {
+                                        "name": "dropout",
+                                        "units": null,
+                                        "activation": null,
+                                        "kernel_regularization": null,
+                                        "rate": 0.1
+                                    },
+                                    {
+                                        "name": "dense_3",
+                                        "units": 32,
+                                        "activation": "relu",
+                                        "kernel_regularization": null,
+                                        "rate": null
+                                    },
+                                    {
+                                        "name": "dense_4",
+                                        "units": 10,
+                                        "activation": "linear",
+                                        "kernel_regularization": null,
+                                        "rate": null
+                                    }
+                                ],
+                                "loss": "mean_absolute_error",
+                                "optimizer": [
+                                    "adam",
+                                    9.999999747378752e-05,
+                                    1e-07
+                                ],
+                                "validation_split": 0.2,
+                                "verbose": 2,
+                                "epochs": 100,
+                                "callbacks": {
+                                    "monitor": "val_loss",
+                                    "patience": 4
+                                },
+                                "batch_size": 16
+                            },
+                            "RMSE": 3.6632680733789713,
+                            "SI": 0.09140052000082022
+                        },
+                        {
+                            "params": {
+                                "layers": [
+                                    {
+                                        "name": "dense",
+                                        "units": 32,
+                                        "activation": "relu",
+                                        "kernel_regularization": null,
+                                        "rate": null
+                                    },
+                                    {
+                                        "name": "dense_1",
+                                        "units": 64,
+                                        "activation": "relu",
+                                        "kernel_regularization": null,
+                                        "rate": null
+                                    },
+                                    {
+                                        "name": "dense_2",
+                                        "units": 64,
+                                        "activation": "relu",
+                                        "kernel_regularization": null,
+                                        "rate": null
+                                    },
+                                    {
+                                        "name": "dropout",
+                                        "units": null,
+                                        "activation": null,
+                                        "kernel_regularization": null,
+                                        "rate": 0.1
+                                    },
+                                    {
+                                        "name": "dense_3",
+                                        "units": 32,
+                                        "activation": "relu",
+                                        "kernel_regularization": null,
+                                        "rate": null
+                                    },
+                                    {
+                                        "name": "dense_4",
+                                        "units": 10,
+                                        "activation": "linear",
+                                        "kernel_regularization": null,
+                                        "rate": null
+                                    }
+                                ],
+                                "loss": "mean_absolute_error",
+                                "optimizer": [
+                                    "adam",
+                                    9.999999747378752e-05,
+                                    1e-07
+                                ],
+                                "validation_split": 0.2,
+                                "verbose": 2,
+                                "epochs": 100,
+                                "callbacks": {
+                                    "monitor": "val_loss",
+                                    "patience": 4
+                                },
+                                "batch_size": 16
+                            },
+                            "RMSE": 3.6632680733789713,
+                            "SI": 0.09140052000082022
+                        },
+                        {
+                            "params": {
+                                "layers": [
+                                    {
+                                        "name": "dense",
+                                        "units": 32,
+                                        "activation": "relu",
+                                        "kernel_regularization": null,
+                                        "rate": null
+                                    },
+                                    {
+                                        "name": "dense_1",
+                                        "units": 64,
+                                        "activation": "relu",
+                                        "kernel_regularization": null,
+                                        "rate": null
+                                    },
+                                    {
+                                        "name": "dense_2",
+                                        "units": 64,
+                                        "activation": "relu",
+                                        "kernel_regularization": null,
+                                        "rate": null
+                                    },
+                                    {
+                                        "name": "dropout",
+                                        "units": null,
+                                        "activation": null,
+                                        "kernel_regularization": null,
+                                        "rate": 0.1
+                                    },
+                                    {
+                                        "name": "dense_3",
+                                        "units": 32,
+                                        "activation": "relu",
+                                        "kernel_regularization": null,
+                                        "rate": null
+                                    },
+                                    {
+                                        "name": "dense_4",
+                                        "units": 10,
+                                        "activation": "linear",
+                                        "kernel_regularization": null,
+                                        "rate": null
+                                    }
+                                ],
+                                "loss": "mean_absolute_error",
+                                "optimizer": [
+                                    "adam",
+                                    9.999999747378752e-05,
+                                    1e-07
+                                ],
+                                "validation_split": 0.2,
+                                "verbose": 2,
+                                "epochs": 100,
+                                "callbacks": {
+                                    "monitor": "val_loss",
+                                    "patience": 4
+                                },
+                                "batch_size": 16
+                            },
+                            "RMSE": 3.6632680733789713,
+                            "SI": 0.09140052000082022
                         }
                     ]
                 }

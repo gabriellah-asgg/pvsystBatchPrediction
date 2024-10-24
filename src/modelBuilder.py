@@ -29,12 +29,12 @@ class ModelBuilder:
 
         # standardize data
         self.scaler = StandardScaler()
-        self.export_model(self.scaler, False)
 
         # split data into sets
         self.y = self.df[self.target]
         self.X = self.df[features]
         self.X_scaled = self.scaler.fit_transform(self.X)
+        self.export_model(self.scaler, False)
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
             self.X_scaled, self.y, test_size=0.30, random_state=self.rand)
 
@@ -76,7 +76,7 @@ class ModelBuilder:
         :param model: model to train
         :param xtrain: training set of x to use
         :param ytrain: training set of y to use
-        :param xtest: test set of x tp use
+        :param xtest: test set of x to use
         :param ytest: test set of y to use
         :return: trained model, rmse score, si score
         """
@@ -100,7 +100,7 @@ class ModelBuilder:
         return model, rmse, si
 
     def build_tf_models(self, model, compile_params, fit_params):
-        """function to build tensorflow models, as the architecture is not the same as keras"""
+        """function to build tensorflow models, as the architecture is not the same as scikit learn"""
         # make model
         model.compile(**compile_params)
         model.fit(self.X_train, self.y_train, **fit_params)
@@ -155,54 +155,50 @@ class ModelBuilder:
 
         return hypertuned_model, rmse_tuned, si_tuned, gridsearch.best_params_
 
-    def run_model_builder(self,model_params,json_filepath):
+    def run_model_builder(self, model_params, json_filepath):
         # run models that haven't previously been run
         for model in model_params.keys():
             curr_model = model_params.get(model).get("model")
             curr_param = model_params.get(model).get("param_grid")
             tuned = 'tuned' in model
+            if model_params.get(model).get("param_grid").get("fit_params"):
+                compile_params = model_params.get(model).get("param_grid").get("compile_params")
+                fit_params = model_params.get(model).get("param_grid").get("fit_params")
+                callback_params = model_params.get(model).get("param_grid").get("fit_params").get("callbacks")[0]
+                fit_params['callbacks'] = {'monitor': callback_params.monitor,
+                                           'patience': callback_params.patience}
+                all_params = {"layers": model_params.get(model).get("param_grid").get("layers")}
+                serial_compile_params = {'loss': compile_params.get('loss'),
+                                         'optimizer': [compile_params.get('optimizer').get_config()['name'],
+                                                       compile_params.get('optimizer').get_config()[
+                                                           'learning_rate'],
+                                                       compile_params.get('optimizer').get_config()['epsilon']]}
+                all_params.update(serial_compile_params)
+                all_params.update(fit_params)
+                curr_param = all_params
             skip_model = check_models_to_run(curr_model, curr_param, self.pv_type, tuned, filepath=json_filepath)
             if not skip_model:
                 if tuned:
-                    train_model, rmse_score, si_score, best_params = self.tune_models(curr_model,curr_param,verbose=5)
+                    train_model, rmse_score, si_score, best_params = self.tune_models(curr_model, curr_param, verbose=5)
                     score = "_" + str(round(rmse_score, 2))
-                    export = add_model_params(pv_type, curr_param, model, rmse_score, si_score, best_params,
+                    export = add_model_params(self.pv_type, curr_param, model, rmse_score, si_score, best_params,
                                               filepath=json_filepath)
 
                     # only export tuned model if it is best tuned model
                     if export:
-                        self.export_model(train_model,True)
+                        self.export_model(train_model, True)
 
                 else:
-                    if model_params.get(model).get("fit_params"):
-                        compile_params = model_params.get(model).get("compile_params")
-                        fit_params = model_params.get(model).get("fit_params")
-                        train_model, rmse_score, si_score = self.build_tf_models(curr_model,compile_params,fit_params)
-                        callback_params = model_params.get(model).get("fit_params").get("callbacks")[0]
-                        fit_params['callbacks'] = {'monitor': callback_params.monitor,
-                                                   'patience': callback_params.patience}
-                        score = "_" + str(round(rmse_score, 2))
-                        layer_configs = []
-                        for layer in model_params.get(model).get("param_grid"):
-                            layer_config = layer.get_config()
-                            configs = {'units': layer_config['units'], 'activation': layer_config['activation']}
-                            layer_configs.append(configs)
-                        all_params = {"layers": layer_configs}
-                        serial_compile_params = {'loss': compile_params.get('loss'),
-                                                 'optimizer': [compile_params.get('optimizer').get_config()['name'],
-                                                               compile_params.get('optimizer').get_config()[
-                                                                   'learning_rate'],
-                                                               compile_params.get('optimizer').get_config()['epsilon']]}
-                        all_params.update(serial_compile_params)
-                        all_params.update(fit_params)
+                    if model_params.get(model).get("param_grid").get("fit_params"):
+
+                        train_model, rmse_score, si_score = self.build_tf_models(curr_model, compile_params, fit_params)
                         add_model_params(self.pv_type, all_params, model, rmse_score, si_score, filepath=json_filepath)
 
                     else:
-                        train_model, rmse_score, si_score = self.build_models(curr_model,)
-                        score = "_" + str(round(rmse_score, 2))
+                        train_model, rmse_score, si_score = self.build_models(curr_model)
                         add_model_params(self.pv_type, curr_param, model, rmse_score, si_score, filepath=json_filepath)
 
-                    self.export_model(train_model,False)
+                    self.export_model(train_model, False)
         #export_to_csv(pv_type, filepath=json_filepath)
 
 

@@ -27,8 +27,8 @@ def check_models_to_run(model, model_params, pv_type, tuned, filepath=r"../res/c
     if not pv_model_runs["Dataset Type"][pv_type]["Models"].get(model_name):
         # add the model name and param_variation dictionary
         pv_model_runs["Dataset Type"][pv_type]["Models"][model_name] = {"best_params": {},
-                                                                         "best_rmse": None, "best_si": None,
-                                                                         "param_variations": []}
+                                                                        "best_rmse": None, "best_si": None,
+                                                                        "param_variations": []}
     for param_var in pv_model_runs["Dataset Type"][pv_type]["Models"][model_name]["param_variations"]:
         param_to_check = param_var.get("params")
         model_found = params_equal(model_params, param_to_check)
@@ -49,11 +49,11 @@ def params_equal(input_params, params):
         if isinstance(input_params[key], tuple):
             input_params[key] = list(input_params[key])
         if isinstance(input_params[key], list):
-            input_params[key] = sorted(input_params[key])
+            input_params[key] = sorted(input_params[key], key=lambda x: (x is None, x))
 
     for key in params:
         if isinstance(params[key], list):
-            params[key] = sorted(params[key])
+            params[key] = sorted(input_params[key], key=lambda x: (x is None, x))
     if input_params == params:
         match = True
     return match
@@ -65,12 +65,13 @@ def add_model_params(pv_type, params, model, rmse, si, best_params=None, filepat
     pv_model_runs = json.load(file)
     pv_model_runs["Dataset Type"][pv_type]["Models"][model]["param_variations"].append(
         {"params": params, "RMSE": rmse, "SI": si})
-    improved_rmse = pv_model_runs["Dataset Type"][pv_type]["Models"][model]["best_rmse"] is None or pv_model_runs["Dataset Type"][pv_type]["Models"][model]["best_rmse"] < rmse
+    improved_rmse = pv_model_runs["Dataset Type"][pv_type]["Models"][model]["best_rmse"] is None or \
+                    pv_model_runs["Dataset Type"][pv_type]["Models"][model]["best_rmse"] > rmse
     if improved_rmse:
         pv_model_runs["Dataset Type"][pv_type]["Models"][model]["best_rmse"] = rmse
         pv_model_runs["Dataset Type"][pv_type]["Models"][model]["best_si"] = si
         if best_params is None:
-            best_params = {}
+            best_params = params
         pv_model_runs["Dataset Type"][pv_type]["Models"][model]["best_params"] = best_params
     # check if model is improved tuning (should be exported)
     else:
@@ -82,6 +83,7 @@ def add_model_params(pv_type, params, model, rmse, si, best_params=None, filepat
         pv_model_runs["Dataset Type"][pv_type]["Best Model"] = model
         pv_model_runs["Dataset Type"][pv_type]["Best Model Score"] = rmse
         pv_model_runs["Dataset Type"][pv_type]["Best Model SI"] = si
+
     with open(filepath, 'w') as f:
         json.dump(pv_model_runs, f, indent=4)
     return export

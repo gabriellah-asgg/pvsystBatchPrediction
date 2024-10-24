@@ -4,21 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="fixed error in json writer">
+    <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="fixed bug in pv_type">
+      <change afterPath="$PROJECT_DIR$/src/featureOptimization.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/modelWrapper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/earray_data/StandardScaler.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/earray_data/StandardScaler.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/earray_data/earray_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/earray_data/earray_cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/earrnom_data/earrnom_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/earrnom_data/earrnom_cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/multitarget_data/StandardScaler.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/res/multitarget_data/StandardScaler.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/multitarget_data/multitarget_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/multitarget_data/multitarget_cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EArrMPPModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/EArrMPPModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EArrNomModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/EArrNomModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EArrayModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/EArrayModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EUsefulModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/EUsefulModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EffArrRModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/EffArrRModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EffSysRModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/EffSysRModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GIncLssModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GIncLssModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ModQualModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ModQualModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OhmLossModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/OhmLossModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TempLssModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/TempLssModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/deSecondBatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/deSecondBatch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jsonWriter.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/jsonWriter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modelBuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelBuilder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/multiTargetModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/multiTargetModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/predictionGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/predictionGenerator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,50 +56,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.EArrMPP.executor": "Run",
-    "Python.EArrMPPModel.executor": "Run",
-    "Python.EArrNomModel.executor": "Run",
-    "Python.EArrayModel.executor": "Run",
-    "Python.EUsefulModel.executor": "Run",
-    "Python.EffArrRModel.executor": "Run",
-    "Python.EffSysRModel.executor": "Run",
-    "Python.GIncLssModel.executor": "Debug",
-    "Python.ModQualModel.executor": "Run",
-    "Python.OhmLossModel.executor": "Run",
-    "Python.TempLssModel.executor": "Run",
-    "Python.buildBestCaseSemiOpModel.executor": "Run",
-    "Python.buildModel.executor": "Run",
-    "Python.buildOpaqueModelCombinedData.executor": "Run",
-    "Python.buildWorstCaseSemiOpModel.executor": "Run",
-    "Python.dataExploration.executor": "Run",
-    "Python.deSecondBatch.executor": "Run",
-    "Python.gui.executor": "Run",
-    "Python.jsonWriter.executor": "Debug",
-    "Python.makeOpaquePredictions.executor": "Run",
-    "Python.makePredictions.executor": "Run",
-    "Python.makeSemiOpaquePredictions.executor": "Debug",
-    "Python.modelBuilder.executor": "Debug",
-    "Python.multiTargetModel.executor": "Run",
-    "Python.opaquePanels.executor": "Debug",
-    "Python.predictionGenerator.executor": "Debug",
-    "Python.preprocessData.executor": "Debug",
-    "Python.pvPanelSemiOpaque.executor": "Debug",
-    "Python.semiOpaqueModel.executor": "Debug",
-    "Python.semiOpaquePredictions.executor": "Run",
-    "Python.tiltExperiments.executor": "Run",
-    "Python.transformJSON.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/gabriellahoover/My Documents"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.EArrMPP.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EArrMPPModel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EArrNomModel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EArrayModel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EUsefulModel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EffArrRModel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EffSysRModel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.GIncLssModel.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.ModQualModel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.OhmLossModel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.TempLssModel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.buildBestCaseSemiOpModel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.buildModel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.buildOpaqueModelCombinedData.executor&quot;: &quot;Run&quot;,
+    &quot;Python.buildWorstCaseSemiOpModel.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dataExploration.executor&quot;: &quot;Run&quot;,
+    &quot;Python.deSecondBatch.executor&quot;: &quot;Run&quot;,
+    &quot;Python.gui.executor&quot;: &quot;Run&quot;,
+    &quot;Python.jsonWriter.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.makeOpaquePredictions.executor&quot;: &quot;Run&quot;,
+    &quot;Python.makePredictions.executor&quot;: &quot;Run&quot;,
+    &quot;Python.makeSemiOpaquePredictions.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.modelBuilder.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.multiTargetModel.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.opaquePanels.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.predictionGenerator.executor&quot;: &quot;Run&quot;,
+    &quot;Python.preprocessData.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.pvPanelSemiOpaque.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.semiOpaqueModel.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.semiOpaquePredictions.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tiltExperiments.executor&quot;: &quot;Run&quot;,
+    &quot;Python.transformJSON.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/gabriellahoover/PycharmProjects/grasshopperModelScript&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "PLAIN_TEXT"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;PLAIN_TEXT&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\gabriellahoover\My Documents" />
@@ -273,7 +273,23 @@
       <option name="project" value="LOCAL" />
       <updated>1728397415741</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="refactored jpv_type in modelBuilder.py">
+      <option name="closed" value="true" />
+      <created>1728397882946</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1728397882946</updated>
+    </task>
+    <task id="LOCAL-00020" summary="fixed bug in pv_type">
+      <option name="closed" value="true" />
+      <created>1728398112409</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1728398112409</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -305,7 +321,9 @@
     <MESSAGE value="abstracted model building more, created a class" />
     <MESSAGE value="added in multi target model, refactored code to work with modelBuilder" />
     <MESSAGE value="fixed error in json writer" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed error in json writer" />
+    <MESSAGE value="refactored jpv_type in modelBuilder.py" />
+    <MESSAGE value="fixed bug in pv_type" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug in pv_type" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -331,24 +349,24 @@
           <option name="timeStamp" value="135" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/predictionGenerator.py</url>
-          <line>30</line>
-          <option name="timeStamp" value="136" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/predictionGenerator.py</url>
-          <line>33</line>
-          <option name="timeStamp" value="137" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/transformJSON.py</url>
           <line>31</line>
           <option name="timeStamp" value="153" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/multiTargetModel.py</url>
-          <line>85</line>
-          <option name="timeStamp" value="166" />
+          <line>95</line>
+          <option name="timeStamp" value="180" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/modelBuilder.py</url>
+          <line>178</line>
+          <option name="timeStamp" value="184" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/jsonWriter.py</url>
+          <line>33</line>
+          <option name="timeStamp" value="185" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

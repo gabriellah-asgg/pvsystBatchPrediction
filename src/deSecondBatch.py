@@ -21,12 +21,17 @@ df = preprocessor.read_worksheet(skip_rows=11, columns=["Indent", "Sheds Tilt", 
                                                         "MisLoss", "OhmLoss", "EArrMPP", "EArray (KWh)", "EUseful",
                                                         "EffSysR", "EffArrR", "EffArrC", "EffSysC"])
 
+
+
 # make a numeric version of the data
 numeric_data = df.drop(columns=['Comment', 'Indent', 'Error'])
+
+print(numeric_data.describe())
 
 corr_matrix = numeric_data.corr()
 plt.figure()
 sns.heatmap(corr_matrix)
+
 
 # make histograms
 for column in numeric_data.columns:
@@ -36,7 +41,7 @@ for column in numeric_data.columns:
 
     # create boxplots
     plt.figure()
-    plt.boxplot(numeric_data[column])
+    sns.boxplot(numeric_data[column])
     plt.title(column)
     plt.autoscale()
 
@@ -102,3 +107,5 @@ tree_model = pickle.load(open(r'../res/multitarget_data/DecisionTreeRegressor.pk
 plt.figure()
 tree.plot_tree(tree_model)
 plt.show()
+
+

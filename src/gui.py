@@ -35,6 +35,9 @@ class Gui():
         if selected == "Opaque Panels":
             print("You selected Opaque Panels.")
             self.predictor = OpaquePredictor()
+        elif selected == "Multi-Target Opaque Panels":
+            print("You selected Multi-Target Opaque Panels.")
+            self.predictor = MultiTargetOpaquePredictor()
         elif selected == "Semi-Opaque Panels":
             print("You selected Semi-Opaque Panels.")
             self.predictor = SemiOpaquePredictor()
@@ -70,10 +73,13 @@ class Gui():
 
         radio_opaque = tkinter.Radiobutton(radio_win, text="Opaque Panels", variable=self.selected_radio,
                                            value="Opaque Panels")
+        radio_multi_opaque = tkinter.Radiobutton(radio_win, text="Multi-Target Opaque Panels", variable=self.selected_radio,
+                                               value="Multi-Target Opaque Panels")
         radio_semiopaque = tkinter.Radiobutton(radio_win, text="Semi-Opaque Panels", variable=self.selected_radio,
                                                value="Semi-Opaque Panels")
 
         radio_opaque.pack(anchor='w')
+        radio_multi_opaque.pack(anchor='w')
         radio_semiopaque.pack(anchor='w')
 
         rad_submit_button = tkinter.Button(radio_win, text='Submit',

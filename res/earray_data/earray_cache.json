@@ -1,9 +1,9 @@
 {
     "Dataset Type": {
         "earray_data": {
-            "Best Model": "Sequential",
-            "Best Model Score": 1.2635744049825601,
-            "Best Model SI": 0.13368785685476126,
+            "Best Model": "SVR",
+            "Best Model Score": 0.21610270924664074,
+            "Best Model SI": 0.022852009219959758,
             "Models": {
                 "SVR": {
                     "best_params": {},
@@ -132,8 +132,8 @@
                         "alpha": 10,
                         "hidden_layer_sizes": [
                             18,
-                            18,
-                            24
+                            24,
+                            18
                         ],
                         "learning_rate": "constant",
                         "learning_rate_init": 0.1,
@@ -149,8 +149,8 @@
                                 "alpha": 10,
                                 "hidden_layer_sizes": [
                                     18,
-                                    18,
-                                    24
+                                    24,
+                                    18
                                 ],
                                 "learning_rate": "constant",
                                 "learning_rate_init": 0.1,
@@ -188,8 +188,8 @@
                                     200
                                 ],
                                 "shuffle": [
-                                    false,
-                                    true
+                                    true,
+                                    false
                                 ],
                                 "early_stopping": [
                                     true
@@ -219,136 +219,6 @@
                             "SI": 0.046982793993423255
                         }
                     ]
-                },
-                "Sequential": {
-                    "best_params": {
-                        "layers": [
-                            {
-                                "units": 32,
-                                "activation": "relu"
-                            },
-                            {
-                                "units": 64,
-                                "activation": "relu"
-                            },
-                            {
-                                "units": 64,
-                                "activation": "relu"
-                            },
-                            {
-                                "units": 32,
-                                "activation": "relu"
-                            },
-                            {
-                                "units": 1,
-                                "activation": "linear"
-                            }
-                        ],
-                        "loss": "mean_absolute_error",
-                        "optimizer": [
-                            "adam",
-                            9.999999747378752e-05,
-                            1e-07
-                        ],
-                        "validation_split": 0.2,
-                        "verbose": 2,
-                        "epochs": 100,
-                        "callbacks": {
-                            "monitor": "val_loss",
-                            "patience": 4
-                        }
-                    },
-                    "best_rmse": 1.2635744049825601,
-                    "best_si": 0.13368785685476126,
-                    "param_variations": [
-                        {
-                            "params": {
-                                "layers": [
-                                    {
-                                        "units": 32,
-                                        "activation": "relu"
-                                    },
-                                    {
-                                        "units": 64,
-                                        "activation": "relu"
-                                    },
-                                    {
-                                        "units": 64,
-                                        "activation": "relu"
-                                    },
-                                    {
-                                        "units": 32,
-                                        "activation": "relu"
-                                    },
-                                    {
-                                        "units": 1,
-                                        "activation": "linear"
-                                    }
-                                ],
-                                "loss": "mean_absolute_error",
-                                "optimizer": [
-                                    "adam",
-                                    9.999999747378752e-05,
-                                    1e-07
-                                ],
-                                "validation_split": 0.2,
-                                "verbose": 2,
-                                "epochs": 100,
-                                "callbacks": {
-                                    "monitor": "val_loss",
-                                    "patience": 4
-                                }
-                            },
-                            "RMSE": 1.2635744049825601,
-                            "SI": 0.13368785685476126
-                        },
-                        {
-                            "params": {
-                                "layers": [
-                                    {
-                                        "units": 32,
-                                        "activation": "relu"
-                                    },
-                                    {
-                                        "units": 64,
-                                        "activation": "relu"
-                                    },
-                                    {
-                                        "units": 64,
-                                        "activation": "relu"
-                                    },
-                                    {
-                                        "units": 32,
-                                        "activation": "relu"
-                                    },
-                                    {
-                                        "units": 1,
-                                        "activation": "linear"
-                                    }
-                                ],
-                                "loss": "mean_absolute_error",
-                                "optimizer": [
-                                    "adam",
-                                    9.999999747378752e-05,
-                                    1e-07
-                                ],
-                                "validation_split": 0.2,
-                                "verbose": 2,
-                                "epochs": 100,
-                                "callbacks": {
-                                    "monitor": "val_loss",
-                                    "patience": 4
-                                }
-                            },
-                            "RMSE": 1.2635744049825601,
-                            "SI": 0.13368785685476126
-                        }
-                    ]
-                },
-                "Sequential_tuned": {
-                    "best_params": {},
-                    "best_rmse": null,
-                    "best_si": null
                 }
             }
         }

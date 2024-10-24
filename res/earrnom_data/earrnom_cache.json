@@ -1,9 +1,9 @@
 {
     "Dataset Type": {
         "earrnom_data": {
-            "Best Model": "Lasso",
-            "Best Model Score": 38.404641192935316,
-            "Best Model SI": 3.5902530291891646,
+            "Best Model": "SVR_tuned",
+            "Best Model Score": 0.41948327163982424,
+            "Best Model SI": 0.03921896551475104,
             "Models": {
                 "SVR": {
                     "best_params": {},
