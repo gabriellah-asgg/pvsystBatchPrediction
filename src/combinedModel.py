@@ -13,18 +13,18 @@ keras.utils.set_random_seed(812)
 # standard random state
 rand = 42
 
-json_filepath = r"../res/multitarget_data/multitarget_cache.json"
-target = ['EArrNom (kWh)', 'GIncLss (kWh)', 'TempLss (kWh)', 'ModQual (kWh)', 'OhmLoss (kWh)', 'EArrMpp (kWh)',
-          'EArray (kWh)', 'EUseful (kWh)', 'EffSysR %', 'EffArrR %']
+json_filepath = r"../res/combined_data/combined_cache.json"
+target = ['EArrNom', 'GIncLss', 'TempLss', 'ModQual', 'OhmLoss', 'EArrMPP',
+          'EArray', 'EffSysR', 'EffArrR']
 
 # construct dataframe for model building
-filepath = (r'Q:\Projects\224008\DESIGN\ANALYSIS\00_PV\PVsyst Batch '
-            r'Simulation\MOD_Canopy_Batch_Simulation_Project_BatchResults_0.xlsx')
+filepath = (
+    r'Q:\Projects\224008\DESIGN\ANALYSIS\00_PV\PVsyst Batch '
+    r'Simulation\MOD_Canopy_Batch_Simulation_Project_BatchResults_combined.xlsx')
 model_builder = ModelBuilder(filepath, target,
-                             columns=['Indent', 'Sheds Tilt', 'Sheds Azim', 'Comment', 'Syst_ON', 'EArrNom (kWh)',
-                                      'GIncLss (kWh)', 'TempLss (kWh)', 'ModQual (kWh)', 'MisLoss (kWh)',
-                                      'OhmLoss (kWh)', 'EArrMpp (kWh)', 'EArray (kWh)', 'EUseful (kWh)', 'EffSysR %',
-                                      'EffArrR %', 'EffArrC %', 'EffSysC %'], data_name="multitarget_data")
+                             columns=["Indent", "Sheds Tilt", "Sheds Azim", "Comment", "EArray", "Syst_ON", "EArrNom",
+                                      "GIncLss", "TempLss", "ModQual", "OhmLoss", "MisLoss", "EArrMPP", "EffArrR",
+                                      "EffSysR", "EffSysC"], data_name="combined_data")
 
 # build models
 model_params = {}
@@ -86,13 +86,17 @@ for layer in seq_nn_params.get('layers'):
                'activation': layer_config.get('activation'),
                'kernel_regularization': layer_config.get('kernel_regularization'), 'rate': layer_config.get('rate')}
     layer_configs.append(configs)
-'''
-model_params[str(seq_nn_model.__class__.__name__)] = {"model": seq_nn_model, "param_grid": {'layers':layer_configs,
-                                                      "compile_params": {'loss': 'mean_absolute_error',
-                                                                         'optimizer': tf.keras.optimizers.Adam(0.0001)},
-                                                      "fit_params": {'validation_split': 0.2, 'verbose': 2,
-                                                                     'epochs': 100, 'callbacks': [callback],
-                                                                 'batch_size': 16}}}
-                                                                 '''
+
+model_params[str(seq_nn_model.__class__.__name__)] = {"model": seq_nn_model, "param_grid": {'layers': layer_configs,
+                                                                                            "compile_params": {
+                                                                                                'loss': 'mean_absolute_error',
+                                                                                                'optimizer': tf.keras.optimizers.Adam(
+                                                                                                    0.0001)},
+                                                                                            "fit_params": {
+                                                                                                'validation_split': 0.2,
+                                                                                                'verbose': 2,
+                                                                                                'epochs': 100,
+                                                                                                'callbacks': [callback],
+                                                                                                'batch_size': 16}}}
 
 model_builder.run_model_builder(model_params, json_filepath)

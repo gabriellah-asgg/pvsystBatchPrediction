@@ -5,89 +5,6 @@
             "Best Model Score": 0.10874188069431168,
             "Best Model SI": 0.0026924041074325934,
             "Models": {
-                "DecisionTreeRegressor": {
-                    "best_params": {},
-                    "best_rmse": 0.19467590675026253,
-                    "best_si": 0.004820086334055405,
-                    "param_variations": [
-                        {
-                            "params": {
-                                "random_state": 42
-                            },
-                            "RMSE": 0.19467590675026253,
-                            "SI": 0.004820086334055405
-                        }
-                    ]
-                },
-                "DecisionTreeRegressor_tuned": {
-                    "best_params": {
-                        "max_depth": 50,
-                        "min_samples_leaf": 1,
-                        "min_samples_split": 3,
-                        "random_state": 42
-                    },
-                    "best_rmse": 0.1931215312212497,
-                    "best_si": 0.004781607122503956,
-                    "param_variations": [
-                        {
-                            "params": {
-                                "random_state": [
-                                    42
-                                ],
-                                "max_depth": [
-                                    5,
-                                    10,
-                                    15,
-                                    20,
-                                    50
-                                ],
-                                "min_samples_split": [
-                                    2,
-                                    3,
-                                    4,
-                                    5,
-                                    8
-                                ],
-                                "min_samples_leaf": [
-                                    1,
-                                    2,
-                                    3
-                                ]
-                            },
-                            "RMSE": 0.1931215312212497,
-                            "SI": 0.004781607122503956
-                        },
-                        {
-                            "params": {
-                                "random_state": [
-                                    42
-                                ],
-                                "max_depth": [
-                                    5,
-                                    10,
-                                    15,
-                                    20,
-                                    50,
-                                    null
-                                ],
-                                "min_samples_split": [
-                                    2,
-                                    3,
-                                    4,
-                                    5,
-                                    8
-                                ],
-                                "min_samples_leaf": [
-                                    1,
-                                    2,
-                                    3
-                                ]
-                            },
-                            "RMSE": 0.1931215312212497,
-                            "SI": 0.004781607122503956
-                        }
-                    ]
-                },
                 "MLPRegressor": {
                     "best_params": {},
                     "best_rmse": 1.8251498517900777,
@@ -485,6 +402,63 @@
                             },
                             "RMSE": 3.6632680733789713,
                             "SI": 0.09140052000082022
+                        }
+                    ]
+                },
+                "DecisionTreeRegressor": {
+                    "best_params": {
+                        "random_state": 42
+                    },
+                    "best_rmse": 0.19467590675026253,
+                    "best_si": 0.004820086334055405,
+                    "param_variations": [
+                        {
+                            "params": {
+                                "random_state": 42
+                            },
+                            "RMSE": 0.19467590675026253,
+                            "SI": 0.004820086334055405
+                        }
+                    ]
+                },
+                "DecisionTreeRegressor_tuned": {
+                    "best_params": {
+                        "max_depth": 50,
+                        "min_samples_leaf": 1,
+                        "min_samples_split": 3,
+                        "random_state": 42
+                    },
+                    "best_rmse": 0.1931215312212497,
+                    "best_si": 0.004781607122503956,
+                    "param_variations": [
+                        {
+                            "params": {
+                                "random_state": [
+                                    42
+                                ],
+                                "max_depth": [
+                                    5,
+                                    10,
+                                    15,
+                                    20,
+                                    50,
+                                    null
+                                ],
+                                "min_samples_split": [
+                                    2,
+                                    3,
+                                    4,
+                                    5,
+                                    8
+                                ],
+                                "min_samples_leaf": [
+                                    1,
+                                    2,
+                                    3
+                                ]
+                            },
+                            "RMSE": 0.1931215312212497,
+                            "SI": 0.004781607122503956
                         }
                     ]
                 }

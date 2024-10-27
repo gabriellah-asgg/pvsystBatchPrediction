@@ -13,12 +13,12 @@ import warnings
 
 
 class ModelBuilder:
-    def __init__(self, source_data_fp, target, columns=None, sheet_name=0, features=None, pv_type=None):
+    def __init__(self, source_data_fp, target, columns=None, sheet_name=0, features=None, data_name=None):
         if features is None:
             features = ['Sheds Tilt', 'Sheds Azim']
-        self.pv_type = pv_type
-        if pv_type is None:
-            self.pv_type = source_data_fp.split('\\')[-1].replace(".xlsx", "")
+        self.data_name = data_name
+        if data_name is None:
+            self.data_name = source_data_fp.split('\\')[-1].replace(".xlsx", "")
 
         self.rand = 42
         self.target = target
@@ -52,7 +52,7 @@ class ModelBuilder:
         filename = str(model.__class__.__name__)
         if tuned:
             filename += "_tuned"
-        directory = '../res/' + self.pv_type
+        directory = '../res/' + self.data_name
         filepath = directory + '/' + filename + '.pkl'
         if not os.path.exists(directory):
             os.makedirs(directory)
@@ -176,12 +176,12 @@ class ModelBuilder:
                 all_params.update(serial_compile_params)
                 all_params.update(fit_params)
                 curr_param = all_params
-            skip_model = check_models_to_run(curr_model, curr_param, self.pv_type, tuned, filepath=json_filepath)
+            skip_model = check_models_to_run(curr_model, curr_param, self.data_name, tuned, filepath=json_filepath)
             if not skip_model:
                 if tuned:
                     train_model, rmse_score, si_score, best_params = self.tune_models(curr_model, curr_param, verbose=5)
                     score = "_" + str(round(rmse_score, 2))
-                    export = add_model_params(self.pv_type, curr_param, model, rmse_score, si_score, best_params,
+                    export = add_model_params(self.data_name, curr_param, model, rmse_score, si_score, best_params,
                                               filepath=json_filepath)
 
                     # only export tuned model if it is best tuned model
@@ -192,11 +192,11 @@ class ModelBuilder:
                     if model_params.get(model).get("param_grid").get("fit_params"):
 
                         train_model, rmse_score, si_score = self.build_tf_models(curr_model, compile_params, fit_params)
-                        add_model_params(self.pv_type, all_params, model, rmse_score, si_score, filepath=json_filepath)
+                        add_model_params(self.data_name, all_params, model, rmse_score, si_score, filepath=json_filepath)
 
                     else:
                         train_model, rmse_score, si_score = self.build_models(curr_model)
-                        add_model_params(self.pv_type, curr_param, model, rmse_score, si_score, filepath=json_filepath)
+                        add_model_params(self.data_name, curr_param, model, rmse_score, si_score, filepath=json_filepath)
 
                     self.export_model(train_model, False)
         #export_to_csv(pv_type, filepath=json_filepath)
