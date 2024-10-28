@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="created ModelWrapper to handle training and serialization of different model types">
-      <change afterPath="$PROJECT_DIR$/res/combined_data/combined_cache.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/combinedModel.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataExplorationCombinedData.py" afterDir="false" />
+    <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="created models for combined data">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/multitarget_data/multitarget_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/multitarget_data/multitarget_cache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modelBuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelBuilder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/multiTargetModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/multiTargetModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/combined_data/combined_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/combined_data/combined_cache.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -296,7 +291,23 @@
       <option name="project" value="LOCAL" />
       <updated>1729804527017</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="created models for combined data">
+      <option name="closed" value="true" />
+      <created>1729994325197</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1729994325197</updated>
+    </task>
+    <task id="LOCAL-00023" summary="created models for combined data">
+      <option name="closed" value="true" />
+      <created>1729994341354</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1729994341354</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -331,7 +342,8 @@
     <MESSAGE value="refactored jpv_type in modelBuilder.py" />
     <MESSAGE value="fixed bug in pv_type" />
     <MESSAGE value="created ModelWrapper to handle training and serialization of different model types" />
-    <option name="LAST_COMMIT_MESSAGE" value="created ModelWrapper to handle training and serialization of different model types" />
+    <MESSAGE value="created models for combined data" />
+    <option name="LAST_COMMIT_MESSAGE" value="created models for combined data" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

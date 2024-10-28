@@ -1,9 +1,9 @@
 {
     "Dataset Type": {
         "combined_data": {
-            "Best Model": "MultiOutputRegressor_tuned",
-            "Best Model Score": 0.13949837826510317,
-            "Best Model SI": 0.004488126379629041,
+            "Best Model": "MLPRegressor_tuned",
+            "Best Model Score": 0.11461974569212069,
+            "Best Model SI": 0.003687798578179288,
             "Models": {
                 "DecisionTreeRegressor": {
                     "best_params": {
@@ -140,6 +140,65 @@
                     ]
                 },
                 "MLPRegressor_tuned": {
+                    "best_params": {
+                        "alpha": 0.0001,
+                        "batch_size": 64,
+                        "early_stopping": true,
+                        "hidden_layer_sizes": [
+                            128,
+                            256,
+                            128
+                        ],
+                        "learning_rate_init": 0.0001,
+                        "random_state": 42,
+                        "shuffle": true
+                    },
+                    "best_rmse": 0.11461974569212069,
+                    "best_si": 0.003687798578179288,
+                    "param_variations": [
+                        {
+                            "params": {
+                                "random_state": [
+                                    42
+                                ],
+                                "batch_size": [
+                                    64,
+                                    200
+                                ],
+                                "shuffle": [
+                                    true,
+                                    false
+                                ],
+                                "early_stopping": [
+                                    true
+                                ],
+                                "alpha": [
+                                    0.0001,
+                                    10
+                                ],
+                                "learning_rate_init": [
+                                    0.0001,
+                                    0.1
+                                ],
+                                "hidden_layer_sizes": [
+                                    [
+                                        18,
+                                        24,
+                                        18
+                                    ],
+                                    [
+                                        128,
+                                        256,
+                                        128
+                                    ]
+                                ]
+                            },
+                            "RMSE": 0.11461974569212069,
+                            "SI": 0.003687798578179288
+                        }
+                    ]
+                },
+                "Sequential": {
                     "best_params": {},
                     "best_rmse": null,
                     "best_si": null,
