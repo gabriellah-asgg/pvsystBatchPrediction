@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e610085-60de-454a-864f-44b70164ac35" name="Changes" comment="created models for combined data">
+      <change afterPath="$PROJECT_DIR$/res/combined_single_data/combined_single.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/combinedRMSE.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/combinedSingleModel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/combined_data/combined_cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/combined_data/combined_cache.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +67,7 @@
     "Python.buildOpaqueModelCombinedData.executor": "Run",
     "Python.buildWorstCaseSemiOpModel.executor": "Run",
     "Python.combinedModel.executor": "Run",
+    "Python.combinedRMSE.executor": "Run",
     "Python.dataExploration.executor": "Run",
     "Python.dataExplorationCombinedData.executor": "Run",
     "Python.deSecondBatch.executor": "Run",
@@ -307,7 +310,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729994341354</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="created models for combined data">
+      <option name="closed" value="true" />
+      <created>1730126345243</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1730126345243</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
