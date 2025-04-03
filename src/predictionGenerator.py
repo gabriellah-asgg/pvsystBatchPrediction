@@ -3,6 +3,7 @@ import pickle
 
 rand = 42
 
+
 class Predictor(ABC):
     def __init__(self):
         self.best_model = None
@@ -17,21 +18,23 @@ class Predictor(ABC):
     def load_model_and_scaler(self):
         pass
 
+
 class MultiTargetOpaquePredictor(Predictor):
     def make_predictions(self, df):
         scaled_data = self.scaler.transform(df)
         predictions = self.best_model.predict(scaled_data)
-        target = ['EArrNom (kWh)', 'GIncLss (kWh)', 'TempLss (kWh)', 'ModQual (kWh)', 'OhmLoss (kWh)', 'EArrMpp (kWh)',
-                  'EArray (kWh)', 'EUseful (kWh)', 'EffSysR %', 'EffArrR %']
+        target = ['EArrNom', 'GIncLss', 'TempLss', 'ModQual', 'OhmLoss', 'EArrMPP',
+                  'EArray', 'EffSysR', 'EffArrR']
         predictions = [[round(pred, 4) for pred in row] for row in predictions]
         df[target] = predictions
         return df
 
     def load_model_and_scaler(self):
         self.best_model = pickle.load(
-            open(r'../res/multitarget_data/MultiOutputRegressor_tuned.pkl', 'rb'))
+            open(r'../res/combined_data/MLPRegressor_tuned.pkl', 'rb'))
 
-        self.scaler = pickle.load(open(r'../res/multitarget_data/StandardScaler.pkl', 'rb'))
+        self.scaler = pickle.load(open(r'../res/combined_data/StandardScaler.pkl', 'rb'))
+
 
 class OpaquePredictor(Predictor):
     def make_predictions(self, df):

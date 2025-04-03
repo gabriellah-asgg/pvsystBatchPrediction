@@ -11,18 +11,18 @@ class ModelWrapper(ABC):
     Wrapper class to make different model types
     """
 
-    def __init__(self, model):
+    def __init__(self, model, params):
         self.model = model
         self.model_type = str(self.model.__class__.__name__)
         self.rmse = -1
         self.si = -1
-        self.params = None
+        self.params = params
+        self.best_params = None
 
     @abstractmethod
-    def train_model(self, params, x_train, y_train, x_test, y_test):
+    def train_model(self, x_train, y_train, x_test, y_test):
         pass
 
-    @abstractmethod
     def equals(self, params):
         equal = True
         if len(self.params) != len(params):
@@ -36,14 +36,13 @@ class ModelWrapper(ABC):
 
         for key in self.params:
             if isinstance(params[key], list):
-                self.params[key] = sorted(params[key], key=lambda x: (x is None, x))
-        if params == self.params:
-            equal = True
+                self.params[key] = sorted(self.params[key], key=lambda x: (x is None, x))
+        if params != self.params:
+            equal = False
         return equal
 
-    @abstractmethod
     def serialize_parameters(self):
-        pass
+        return self.params
 
     def calc_scatter_index(self, rmse, y_preds, model):
         # scatter index
@@ -64,8 +63,8 @@ class ModelWrapper(ABC):
 
 
 class BaseModel(ModelWrapper, ABC):
-    @abstractmethod
-    def train_model(self, params, x_train, y_train, x_test, y_test):
+
+    def train_model(self, x_train, y_train, x_test, y_test):
         """
                 Trains and tests given model using given test and training sets; Calculates RMSE.
                 :param model: model to train
@@ -75,7 +74,6 @@ class BaseModel(ModelWrapper, ABC):
                 :param y_test: test set of y to use
                 :return: trained model, rmse score, si score
         """
-        self.params = params
         # make model
         self.model.fit(x_train, y_train)
         y_pred = self.model.predict(x_test)
@@ -91,14 +89,17 @@ class BaseModel(ModelWrapper, ABC):
 
 
 class TunedModel(ModelWrapper, ABC):
-    @abstractmethod
-    def train_model(self, params, x_train, y_train, x_test, y_test, cv=15, verbose=0,
+    def __init__(self, model, params):
+        super().__init__(model, params)
+        self.model_type = str(self.model.__class__.__name__) + "_tuned"
+
+    def train_model(self, x_train, y_train, x_test, y_test, cv=15, verbose=5,
                     scoring='neg_root_mean_squared_error'):
         # apply hyperparameter tuning
-        gridsearch = GridSearchCV(self.model, param_grid=params, cv=cv, verbose=verbose, scoring=scoring)
+        gridsearch = GridSearchCV(self.model, param_grid=self.params, cv=cv, verbose=verbose, scoring=scoring)
         warnings.filterwarnings("ignore")
         gridsearch.fit(x_train, y_train)
-        self.params = gridsearch.best_params_
+        self.best_params = gridsearch.best_params_
         print("Best Parameters of " + self.model_type + " are: " + str(gridsearch.best_params_))
         hypertuned_model = gridsearch.best_estimator_
         hypertuned_model.fit(x_train, y_train)
@@ -111,17 +112,16 @@ class TunedModel(ModelWrapper, ABC):
 
         # scatter index
         si_tuned = self.calc_scatter_index(self.rmse, y_pred_tuned, self.model)
+        self.si = si_tuned
 
-        return hypertuned_model, self.rmse, si_tuned, gridsearch.best_params_
+        return self.model_type, self.rmse, si_tuned
 
 
 class TFModel(ModelWrapper, ABC):
 
-    @abstractmethod
-    def train_model(self, params, x_train, y_train, x_test, y_test):
-        self.params = params
-        compile_params = params.get('compile_params')
-        fit_params = params.get('fit_params')
+    def train_model(self, x_train, y_train, x_test, y_test):
+        compile_params = self.params.get('compile_params')
+        fit_params = self.params.get('fit_params')
 
         self.model.compile(**compile_params)
         self.model.fit(x_train, y_train, **fit_params)
@@ -138,7 +138,6 @@ class TFModel(ModelWrapper, ABC):
 
         return self.model, self.rmse, si
 
-    @abstractmethod
     def serialize_parameters(self):
         compile_params = self.params.get("param_grid").get("compile_params")
         fit_params = self.params.get("param_grid").get("fit_params")
@@ -155,7 +154,6 @@ class TFModel(ModelWrapper, ABC):
         serialized_params.update(fit_params)
         return serialized_params
 
-    @abstractmethod
     def equals(self, params):
         equal = True
         if len(self.params) != len(params):

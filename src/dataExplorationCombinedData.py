@@ -33,11 +33,13 @@ for column in numeric_data.columns:
     plt.hist(numeric_data[column])
     plt.title(column)
 
+
     # create boxplots
     plt.figure()
     sns.boxplot(numeric_data[column])
     plt.title(column)
     plt.autoscale()
+
 
 # hists show that  EffSysC, MisLoss, and Syst_ON  are one line and should be dropped
 

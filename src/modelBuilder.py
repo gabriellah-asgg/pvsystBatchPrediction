@@ -155,6 +155,18 @@ class ModelBuilder:
 
         return hypertuned_model, rmse_tuned, si_tuned, gridsearch.best_params_
 
+    def run(self, model_params, json_filepath):
+        # run models that haven't previously been run
+        for model in model_params.keys():
+            curr_model = model_params.get(model).get("model")
+            curr_param = model_params.get(model).get("param_grid")
+            skip_model = check_models_to_run(curr_model.model_type, curr_model, self.data_name, filepath=json_filepath)
+            if not skip_model:
+                model_name, rmse, si = curr_model.train_model(self.X_train, self.y_train, self.X_test, self.y_test)
+                export = add_model_params(self.data_name, curr_model, filepath=json_filepath)
+                if export:
+                    self.export_model(curr_model.model, isinstance(curr_model, TunedModel))
+
     def run_model_builder(self, model_params, json_filepath):
         # run models that haven't previously been run
         for model in model_params.keys():
@@ -192,11 +204,13 @@ class ModelBuilder:
                     if model_params.get(model).get("param_grid").get("fit_params"):
 
                         train_model, rmse_score, si_score = self.build_tf_models(curr_model, compile_params, fit_params)
-                        add_model_params(self.data_name, all_params, model, rmse_score, si_score, filepath=json_filepath)
+                        add_model_params(self.data_name, all_params, model, rmse_score, si_score,
+                                         filepath=json_filepath)
 
                     else:
                         train_model, rmse_score, si_score = self.build_models(curr_model)
-                        add_model_params(self.data_name, curr_param, model, rmse_score, si_score, filepath=json_filepath)
+                        add_model_params(self.data_name, curr_param, model, rmse_score, si_score,
+                                         filepath=json_filepath)
 
                     self.export_model(train_model, False)
         #export_to_csv(pv_type, filepath=json_filepath)

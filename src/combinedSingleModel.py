@@ -8,6 +8,7 @@ import tensorflow as tf
 
 from tensorflow import keras
 from tensorflow.keras import layers
+from modelWrapper import ModelWrapper, BaseModel
 
 keras.utils.set_random_seed(812)
 # standard random state
@@ -23,17 +24,19 @@ filepath = (
 model_builder = ModelBuilder(filepath, target,
                              columns=["Indent", "Sheds Tilt", "Sheds Azim", "Comment", "EArray", "Syst_ON", "EArrNom",
                                       "GIncLss", "TempLss", "ModQual", "OhmLoss", "MisLoss", "EArrMPP", "EffArrR",
-                                      "EffSysR", "EffSysC"], data_name="combined_data")
-
+                                      "EffSysR", "EffSysC"], data_name="combined_single_data")
 
 # build models
 model_params = {}
 
 ''' PARAMETER DICTIONARIES FOR MODELS'''
 # define dictionaries
+
 svr_params = {}
+
 svr_params_cv = {'kernel': ['rbf'],
                  'C': [0.1, 1], 'epsilon': [0.1, 0.2, 0.5]}
+
 
 ridge_params = {}
 ridge_params_cv = {'solver': ('auto', 'svd', 'lsqr'),
@@ -57,42 +60,46 @@ seq_nn_params = [layers.Dense(32, activation='relu'),
                  layers.Dense(1)]
 
 # instantiate models
-svr_model = SVR(**svr_params)
-tuned_svr_model = SVR(**svr_params_cv)
+svr_model = BaseModel(SVR(), svr_params)
+tuned_svr_model = TunedModel(SVR(**svr_params_cv), svr_params_cv)
 
-ridge_model = Ridge(**ridge_params)
-tuned_ridge_model = Ridge(**ridge_params_cv)
 
-lasso_model = linear_model.Lasso(**lasso_params)
-tuned_lasso_model = linear_model.Lasso(**lasso_params_cv)
+ridge_model = BaseModel(Ridge(**ridge_params), ridge_params)
+tuned_ridge_model = TunedModel(Ridge(**ridge_params_cv), ridge_params_cv)
 
-nn_model = MLPRegressor(**nn_params)
-tuned_nn_model = MLPRegressor(**nn_params_cv)
+lasso_model = BaseModel(linear_model.Lasso(**lasso_params), lasso_params)
+tuned_lasso_model = TunedModel(linear_model.Lasso(**lasso_params_cv), lasso_params_cv)
+
+nn_model = BaseModel(MLPRegressor(**nn_params), nn_params)
+tuned_nn_model = TunedModel(MLPRegressor(**nn_params_cv), nn_params_cv)
 
 seq_nn_model = keras.Sequential(seq_nn_params)
 callback = keras.callbacks.EarlyStopping(patience=4)
 
 # add to parameter dictionary
-model_params[str(svr_model.__class__.__name__)] = {"model": svr_model, "param_grid": svr_params}
-model_params[str(tuned_svr_model.__class__.__name__) + "_tuned"] = {"model": tuned_svr_model,
+model_params[svr_model.model_type] = {"model": svr_model, "param_grid": svr_params}
+model_params[tuned_svr_model.model_type + "_tuned"] = {"model": tuned_svr_model,
                                                                     "param_grid": svr_params_cv}
 
-model_params[str(ridge_model.__class__.__name__)] = {"model": ridge_model, "param_grid": ridge_params}
-model_params[str(tuned_ridge_model.__class__.__name__) + "_tuned"] = {"model": tuned_ridge_model,
+model_params[ridge_model.model_type] = {"model": ridge_model, "param_grid": ridge_params}
+model_params[tuned_ridge_model.model_type + "_tuned"] = {"model": tuned_ridge_model,
                                                                       "param_grid": ridge_params_cv}
 
-model_params[str(lasso_model.__class__.__name__)] = {"model": lasso_model, "param_grid": lasso_params}
-model_params[str(tuned_lasso_model.__class__.__name__) + "_tuned"] = {"model": tuned_lasso_model,
+model_params[lasso_model.model_type] = {"model": lasso_model, "param_grid": lasso_params}
+model_params[tuned_lasso_model.model_type + "_tuned"] = {"model": tuned_lasso_model,
                                                                       "param_grid": lasso_params_cv}
 
-model_params[str(nn_model.__class__.__name__)] = {"model": nn_model, "param_grid": nn_params}
-model_params[str(tuned_nn_model.__class__.__name__) + "_tuned"] = {"model": tuned_nn_model, "param_grid": nn_params_cv}
+model_params[nn_model.model_type] = {"model": nn_model, "param_grid": nn_params}
+model_params[tuned_nn_model.model_type + "_tuned"] = {"model": tuned_nn_model, "param_grid": nn_params_cv}
+
+'''
 
 model_params[str(seq_nn_model.__class__.__name__)] = {"model": seq_nn_model, "param_grid": seq_nn_params,
                                                       "compile_params": {'loss': 'mean_absolute_error',
                                                                          'optimizer': tf.keras.optimizers.Adam(0.0001)},
                                                       "fit_params": {'validation_split': 0.2, 'verbose': 2,
                                                                      'epochs': 100, 'callbacks': [callback]}}
+'''
 
-
-model_builder.run_model_builder(model_params, json_filepath)
+#model_builder.run_model_builder(model_params, json_filepath)
+model_builder.run(model_params, json_filepath)

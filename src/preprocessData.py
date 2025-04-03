@@ -33,7 +33,7 @@ class Preprocessor:
     def __init__(self, filepath):
         self.filepath = filepath
 
-    def read_worksheet(self, skip_rows=0, names=None, index_col=None, columns=None, sheet=0):
+    def  read_worksheet(self, skip_rows=0, names=None, index_col=None, columns=None, sheet=0):
         '''function to preprocess data'''
         if columns is None:
             columns = ["Indent", "Sheds Tilt", "Sheds Azim", "NB Strings in Parallel", "NB Inverter or MPPT", "Comment",
